@@ -17,6 +17,26 @@ const ScreebModule = NativeModules.ScreebModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return ScreebModule.multiply(a, b);
+export function initSdk(
+    androidChannelId: string,
+    iosChannelId: string,
+    userId?: string,
+    properties?: Map<string, any>) {
+  if (Platform.OS === 'ios') {
+    return ScreebModule.initSdk(iosChannelId, userId, properties);
+  } else {
+    return ScreebModule.initSdk(androidChannelId, userId, properties);
+  }
+}
+export function setIdentity(userId: string, properties?: Map<string, any>) {
+  return ScreebModule.setIdentity(userId, properties);
+}
+export function trackEvent(name: string, properties?: Map<string, any>) {
+  return ScreebModule.trackEvent(name, properties);
+}
+export function trackScreen(name: string, properties?: Map<string, any>) {
+  return ScreebModule.trackScreen(name, properties);
+}
+export function setProperties(properties?: Map<string, any>) {
+  return ScreebModule.setProperties(properties);
 }

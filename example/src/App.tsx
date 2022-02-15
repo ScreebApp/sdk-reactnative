@@ -1,19 +1,62 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'screeb-module';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from 'screeb-module';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+     initSdk(
+        "082b7590-1621-4f72-8030-731a98cd1448",
+        "5c62c145-91f1-4abd-8aa2-63d7847db1e1",
+        "flutter_plugin@screeb.app",
+        {
+          'isConnected': false,
+          'age': 29,
+          'product' : 'iPhone 13',
+        }
+     );
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+      <Text style={styles.sectionTitle}>Screeb demo app</Text>
+      <Button
+        style={styles.sectionButton}
+        title="Set identity"
+        onPress={setIdentity('react-user@screeb.app', {'isConnected': false,
+                                                   'age': 29,
+                                                   'product' : 'iPhone 13',
+                                                   })}
+      />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="Track event"
+        onPress={trackScreen('ReactModuleEvent', {'isConnected': false,
+                                                   'age': 29,
+                                                   'product' : 'iPhone 13',
+                                                   })}
+      />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="Track screen"
+        onPress={trackScreen('ReactModuleScreen', {'isConnected': false,
+                                                   'age': 29,
+                                                   'product' : 'iPhone 13',
+                                                   })}
+      />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="Set visitor properties"
+        onPress={setProperties({'isConnected': false,
+                                'age': 29,
+                                'product' : 'iPhone 13',
+                                })}
+     />
+      </View>
   );
 }
 
@@ -27,5 +70,17 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
+  },
+  sectionButton: {
+    padding: 30,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 32,
+  },
+  space: {
+    width: 20,
+    height: 20,
   },
 });
