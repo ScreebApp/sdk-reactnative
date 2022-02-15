@@ -33,7 +33,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Track event"
-        onPress={trackScreen('ReactModuleEvent', {'isConnected': false,
+        onPress={trackEvent('ReactModuleEvent', {'isConnected': false,
                                                    'age': 29,
                                                    'product' : 'iPhone 13',
                                                    })}

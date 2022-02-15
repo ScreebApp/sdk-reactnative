@@ -34,15 +34,17 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "screeb",
+    "survey"
   ],
-  "repository": "https://github.com/ScreebApp/screeb-module",
+  "repository": "https://github.com/ScreebApp/sdk-reactnative",
   "author": "Clement <clement@screeb.app> (https://github.com/clement-screeb)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ScreebApp/screeb-module/issues"
+    "url": "https://github.com/ScreebApp/sdk-reactnative/issues"
   },
-  "homepage": "https://github.com/ScreebApp/screeb-module#readme",
+  "homepage": "https://github.com/ScreebApp/sdk-reactnative#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
