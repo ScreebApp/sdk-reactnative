@@ -46,7 +46,7 @@ It is mandatory to pass the Application context to the module in your custom App
 in the `onCreate` function :
 
 ```kotlin
-    override fun onCreate() {
+override fun onCreate() {
     super.onCreate()
     ScreebModuleModule.setAppContext(this)
 }
