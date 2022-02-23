@@ -46,7 +46,7 @@ It is mandatory to pass the Application context to the module in your custom App
 in the `onCreate` function :
 
 ```kotlin
-override fun onCreate() {
+    override fun onCreate() {
     super.onCreate()
     ScreebModuleModule.setAppContext(this)
 }
@@ -58,54 +58,65 @@ override fun onCreate() {
 import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from "screeb-module";
 
 // Init the sdk at app start (useEffect hook used here, but componentDidMount is fine)
-  React.useEffect(() => {
-     initSdk(
-        "<android-channel-id>",
-        "<ios-channel-id>",
-        "<user-identity>",
-        {
-          'example-prop1': false,
-          'example-prop2': 29,
-          'example-prop3' : 'iPhone 13',
-        }
-     );
-  }, []);
+React.useEffect(() => {
+   initSdk(
+      "<android-channel-id>",
+      "<ios-channel-id>",
+      "<user-identity>",
+      {
+         'example-prop1': false,
+         'example-prop2': 29,
+         'example-prop3' : 'iPhone 13',
+      }
+   );
+}, []);
+
 (...)
+
 // SetIdentity command :
- setIdentity(
+setIdentity(
     '<user-identity>',
     {
         'example-prop1': false,
         'example-prop2': 29,
         'example-prop3' : 'iPhone 13',
-    });
+    }
+);
+
 (...)
+
 // trackEvent command :
-  trackEvent(
+trackEvent(
     '<event-name>',
     {
         'example-prop1': false,
         'example-prop2': 29,
         'example-prop3' : 'iPhone 13',
-    });
+    }
+);
+
 (...)
+
 // trackScreen command :
-  trackScreen(
+trackScreen(
     '<screen-name>',
     {
         'example-prop1': false,
         'example-prop2': 29,
         'example-prop3' : 'iPhone 13',
-    });
+    }
+);
+
 (...)
+
 // setProperties command :
-  setProperties(
+setProperties(
     {
         'example-prop1': false,
         'example-prop2': 29,
         'example-prop3' : 'iPhone 13',
-    });
-
+    }
+);
 ```
 
 ## License
