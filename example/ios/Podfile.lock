@@ -278,14 +278,14 @@ PODS:
     - React-jsi (= 0.67.3)
     - React-logger (= 0.67.3)
     - React-perflogger (= 0.67.3)
-  - Screeb (1.2.0):
+  - Screeb (1.4.0):
     - Alamofire (~> 5.4)
     - AlamofireNetworkActivityLogger (~> 3.4)
     - Kingfisher (~> 7.0)
     - Starscream (~> 4.0.0)
-  - screeb-module (0.2.0):
+  - screeb-module (0.3.0):
     - React-Core
-    - Screeb (~> 1.2.0)
+    - Screeb (~> 1.4.0)
   - Starscream (4.0.4)
   - Yoga (1.14.0)
 
@@ -431,8 +431,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: d0361f15ea978958fab7ffb6960f475b5063d83f
   React-runtimeexecutor: af1946623656f9c5fd64ca6f36f3863516193446
   ReactCommon: 650e33cde4fb7d36781cd3143f5276da0abb2f96
-  Screeb: 43a4e1c0ce624c68ab97734d2dc7ec67a298ca3b
-  screeb-module: 168d4d144041673a0fc8f6eadd6ac2dde805ac5d
+  Screeb: dac6a6465a798d79c5a11972d52affcc6980e96d
+  screeb-module: 5e025a9e2daf80352b8bd5d56a4f81c667667bd8
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Yoga: 90dcd029e45d8a7c1ff059e8b3c6612ff409061a
 
