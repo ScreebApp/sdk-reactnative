@@ -1,6 +1,6 @@
 {
   "name": "screeb-module-example",
-  "description": "Example app for screeb-module",
+  "description": "Example app for @screeb/react-native",
   "version": "0.0.1",
   "private": true,
   "scripts": {

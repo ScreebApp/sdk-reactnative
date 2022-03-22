@@ -1,11 +1,11 @@
-# screeb-module
+# @screeb/react-native
 
 A react-native module to integrate Screeb mobile sdk for Android and/or iOS.
 
 ## Installation
 
 ```sh
-npm install screeb-module
+npm install @screeb/react-native
 ```
 
 ## iOS specific configuration
@@ -55,7 +55,7 @@ override fun onCreate() {
 ## Usage
 
 ```js
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from "screeb-module";
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from "@screeb/react-native";
 
 // Init the sdk at app start (useEffect hook used here, but componentDidMount is fine)
 React.useEffect(() => {

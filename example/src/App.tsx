@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from 'screeb-module';
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from '@screeb/react-native';
 
 export default function App() {
 
@@ -9,7 +9,7 @@ export default function App() {
      initSdk(
         "082b7590-1621-4f72-8030-731a98cd1448",
         "5c62c145-91f1-4abd-8aa2-63d7847db1e1",
-        "flutter_plugin@screeb.app",
+        "react-native@screeb.app",
         {
           'isConnected': false,
           'age': 29,
