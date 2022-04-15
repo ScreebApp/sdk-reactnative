@@ -52,6 +52,12 @@ override fun onCreate() {
 }
 ```
 
+NB : Your android app needs to use AGP minimum 7.1.3
+
+```groovy
+classpath("com.android.tools.build:gradle:7.1.3")
+```
+
 ## Usage
 
 ```js
