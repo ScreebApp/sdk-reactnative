@@ -31,6 +31,11 @@ post_install do |installer|
 end
 ```
 
+When upgrading a Screeb sdk-reactnative version, it can be useful to run in /ios directory :
+```sh
+pod update Screeb
+```
+
 ## Android specific configuration
 
 First, you should use MultidexApplication if not yet to avoid compilation issues.
