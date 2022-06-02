@@ -8,7 +8,7 @@ export default function App() {
   React.useEffect(() => {
      initSdk(
         "082b7590-1621-4f72-8030-731a98cd1448",
-        "6811e879-2db2-426b-9a0d-ab56d4bdf99d",
+        "5c62c145-91f1-4abd-8aa2-63d7847db1e1",
         "react-native@screeb.app",
         {
           'isConnected': false,
