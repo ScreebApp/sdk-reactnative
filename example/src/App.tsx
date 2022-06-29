@@ -14,6 +14,7 @@ export default function App() {
           'isConnected': false,
           'age': 29,
           'product' : 'iPhone 13',
+          'email' : 'react-native@screeb.app',
         }
      );
   }, []);
