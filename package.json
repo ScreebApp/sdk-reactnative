@@ -438,7 +438,7 @@
     "has-value": "^1.0.0",
     "has-values": "^1.0.0",
     "has-yarn": "^2.1.0",
-    "hermes-engine": "^0.9.0",
+    "hermes-engine": "^0.10.0",
     "hermes-parser": "^0.4.7",
     "hermes-profile-transformer": "^0.0.6",
     "hosted-git-info": "^4.1.0",
