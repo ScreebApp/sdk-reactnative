@@ -67,6 +67,26 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     screeb?.setVisitorProperties(properties.toHashMap())
   }
 
+  @ReactMethod
+  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean, hiddenFields: ReadableMap? = null) {
+    Log.e("ScreebModule", "Called startSurvey : $surveyId")
+    var map: HashMap<String, Any>? = null
+    if (hiddenFields != null) {
+      map = hiddenFields.toHashMap()
+    }
+    screeb?.startSurvey(surveyId, allowMultipleResponses, map)
+  }
+
+  @ReactMethod
+  fun assignGroup(name: String, type: String? = null, properties: ReadableMap? = null) {
+    Log.d("ScreebModule", "Called assignGroup : $name")
+    var map: HashMap<String, Any>? = null
+    if (properties != null) {
+      map = properties.toHashMap()
+    }
+    screeb?.assignGroup(name, type, map)
+  }
+
   companion object {
     var screeb: Screeb? = null
 
