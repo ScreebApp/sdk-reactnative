@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity } from '@screeb/react-native';
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup } from '@screeb/react-native';
 
 export default function App() {
 
@@ -14,7 +14,7 @@ export default function App() {
           'isConnected': false,
           'age': 29,
           'product' : 'iPhone 13',
-          'email' : 'react-native@screeb.app',
+          'email' : 'e2e@screeb.app',
         }
      );
   }, []);
@@ -56,6 +56,25 @@ export default function App() {
                                 'age': 29,
                                 'product' : 'iPhone 13',
                                 })}
+     />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="Start survey"
+        onPress={startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4",
+                             true,
+                             null)}
+     />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="Assign group"
+        onPress={assignGroup("groupName",
+                             "groupType",
+                             {'isConnected': false,
+                              'age': 29,
+                              'product' : 'iPhone 13',
+                              })}
      />
       </View>
   );
