@@ -16,8 +16,12 @@ npm install @screeb/react-native
 ```
 
 ## iOS specific configuration
-You should set IOS target build configuration `BUILD_LIBRARY_FOR_DISTRIBUTION` to `YES` in your `Podfile` to avoid runtime crash:
+
+Your Podfile needs the instruction **use_frameworks!** to correctly import Screeb dependencies.
+Then you should set IOS target build configuration `BUILD_LIBRARY_FOR_DISTRIBUTION` to `YES` in your `Podfile` to avoid runtime crash:
 ```ruby
+use_frameworks!
+...
 post_install do |installer|
   ...
   installer.pods_project.targets.each do |target|
