@@ -16,6 +16,20 @@
     "screeb",
     "survey"
   ],
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "screeb-module.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ScreebApp/sdk-reactnative.git"
