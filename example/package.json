@@ -9,8 +9,8 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react": "17.0.2",
-    "react-native": "0.67.3"
+    "react": "18.2.0",
+    "react-native": "0.69.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
