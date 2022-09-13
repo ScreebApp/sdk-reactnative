@@ -282,7 +282,7 @@ PODS:
     - KeyboardGuide (~> 0.2.1)
     - Kingfisher (~> 7.0)
     - Starscream (~> 4.0.0)
-  - screeb-module (0.8.1):
+  - screeb-module (0.8.2):
     - React-Core
     - Screeb (~> 1.8.2)
   - Starscream (4.0.4)
@@ -431,7 +431,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: af1946623656f9c5fd64ca6f36f3863516193446
   ReactCommon: 650e33cde4fb7d36781cd3143f5276da0abb2f96
   Screeb: 985579a2a7ee4bc183607dd2d0d9a42558723a62
-  screeb-module: f4ad45689fbbae3451e5a8a39c7171f5a15e8007
+  screeb-module: 35d6a403bc650fa17021df460ad51721512d82ae
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Yoga: 90dcd029e45d8a7c1ff059e8b3c6612ff409061a
 
