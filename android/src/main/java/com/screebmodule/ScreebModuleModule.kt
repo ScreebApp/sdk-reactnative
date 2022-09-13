@@ -86,7 +86,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (hiddenFields != null) {
       map = hiddenFields.toHashMap()
     }
-    screeb?.startSurvey(surveyId, allowMultipleResponses, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.startSurvey(surveyId, allowMultipleResponses, map)
+    }
   }
 
   @ReactMethod
@@ -96,7 +98,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    screeb?.assignGroup(name, type, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.assignGroup(name, type, map)
+    }
   }
 
   companion object {
