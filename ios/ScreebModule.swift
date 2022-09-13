@@ -1,5 +1,6 @@
 import Screeb
 import UIKit
+import Foundation
 
 @objc(ScreebModule)
 class ScreebModule: NSObject {
@@ -14,7 +15,9 @@ class ScreebModule: NSObject {
         map = self.mapToAnyEncodable(map: properties_!)
     }
     if let controller = UIApplication.shared.keyWindow?.rootViewController {
-        Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map)
+        DispatchQueue.main.async {
+          Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map)
+        }
     } else {
         print("Screeb : error init, could not find rootViewController")
     }
@@ -25,7 +28,9 @@ class ScreebModule: NSObject {
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
     }
-    Screeb.setIdentity(uniqueVisitorId: userId, visitorProperty: map)
+    DispatchQueue.main.async {
+      Screeb.setIdentity(uniqueVisitorId: userId, visitorProperty: map)
+    }
   }
 
   @objc func trackEvent(_ eventId: String, properties properties_: [String: Any]?) {
@@ -33,7 +38,9 @@ class ScreebModule: NSObject {
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
     }
-    Screeb.trackEvent(name: eventId, trackingEventProperties: map)
+    DispatchQueue.main.async {
+      Screeb.trackEvent(name: eventId, trackingEventProperties: map)
+    }
   }
 
   @objc func trackScreen(_ screen: String, properties properties_: [String: Any]?) {
@@ -41,13 +48,17 @@ class ScreebModule: NSObject {
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
     }
-    Screeb.trackScreen(name: screen, trackingEventProperties: map)
+    DispatchQueue.main.async {
+      Screeb.trackScreen(name: screen, trackingEventProperties: map)
+    }
   }
 
   @objc(setProperties:)
   func setVisitorPropertiesImpl(_ properties: [String: Any]) {
     let map = self.mapToAnyEncodable(map: properties)
-    Screeb.visitorProperty(visitorProperty: map)
+    DispatchQueue.main.async {
+      Screeb.visitorProperty(visitorProperty: map)
+    }
   }
 
   private func mapToAnyEncodable(map: [String: Any]) -> [String: AnyEncodable?] {

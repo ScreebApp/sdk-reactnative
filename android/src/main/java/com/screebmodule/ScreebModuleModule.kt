@@ -10,6 +10,8 @@ import androidx.annotation.NonNull
 import android.content.Context
 import android.util.Log
 import app.screeb.sdk.Screeb
+import android.os.Handler
+import android.os.Looper
 
 class ScreebModuleModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -25,7 +27,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    screeb?.pluginInit(channelId, userId, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.pluginInit(channelId, userId, map)
+    }
   }
 
   @ReactMethod
@@ -35,7 +39,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    screeb?.setIdentity(userId, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.setIdentity(userId, map)
+    }
   }
 
   @ReactMethod
@@ -45,7 +51,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    screeb?.trackEvent(eventId, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.trackEvent(eventId, map)
+    }
   }
 
   @ReactMethod
@@ -55,7 +63,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    screeb?.trackScreen(screen, map)
+    Handler(Looper.getMainLooper()).post {
+      screeb?.trackScreen(screen, map)
+    }
   }
 
   @ReactMethod
@@ -64,7 +74,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       "ScreebModule",
       "Called setVisitorProperties with " + properties.toHashMap().size + " properties"
     )
-    screeb?.setVisitorProperties(properties.toHashMap())
+    Handler(Looper.getMainLooper()).post {
+      screeb?.setVisitorProperties(properties.toHashMap())
+    }
   }
 
   companion object {
