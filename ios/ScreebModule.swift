@@ -71,13 +71,13 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func assignGroup(_ name: String, type type_: String?, properties properties_: [String: Any]?) {
+  @objc func assignGroup(_ type: String?, name name_: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!).filter({ $0.value != nil }).mapValues({ $0! })
     }
     DispatchQueue.main.async {
-      Screeb.assignGroup(name: name, type: type_, properties: map)
+      Screeb.assignGroup(type: type, name: name_, properties: map)
     }
   }
 

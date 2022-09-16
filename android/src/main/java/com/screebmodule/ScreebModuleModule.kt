@@ -28,7 +28,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = properties.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.pluginInit(channelId, userId, map)
+      Screeb?.pluginInit(channelId, userId, map)
     }
   }
 
@@ -40,7 +40,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = properties.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.setIdentity(userId, map)
+      Screeb?.setIdentity(userId, map)
     }
   }
 
@@ -52,7 +52,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = properties.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.trackEvent(eventId, map)
+      Screeb?.trackEvent(eventId, map)
     }
   }
 
@@ -64,7 +64,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = properties.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.trackScreen(screen, map)
+      Screeb?.trackScreen(screen, map)
     }
   }
 
@@ -75,7 +75,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       "Called setVisitorProperties with " + properties.toHashMap().size + " properties"
     )
     Handler(Looper.getMainLooper()).post {
-      screeb?.setVisitorProperties(properties.toHashMap())
+      Screeb?.setVisitorProperties(properties.toHashMap())
     }
   }
 
@@ -87,31 +87,29 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = hiddenFields.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.startSurvey(surveyId, allowMultipleResponses, map)
+      Screeb?.startSurvey(surveyId, allowMultipleResponses, map)
     }
   }
 
   @ReactMethod
-  fun assignGroup(name: String, type: String? = null, properties: ReadableMap? = null) {
+  fun assignGroup(type: String? = null, name: String, properties: ReadableMap? = null) {
     Log.d("ScreebModule", "Called assignGroup : $name")
     var map: HashMap<String, Any>? = null
     if (properties != null) {
       map = properties.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      screeb?.assignGroup(name, type, map)
+      Screeb?.assignGroup(type, name, map)
     }
   }
 
   companion object {
-    var screeb: Screeb? = null
 
     @JvmStatic
     fun setAppContext(context: Context){
-      screeb = Screeb.Builder()
-        .withContext(context)
-        .withPluginMode(true)
-        .build()
+      Screeb.initSdkWithContextOnly(
+        context
+      )
     }
 
   }

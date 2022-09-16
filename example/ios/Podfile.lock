@@ -13,7 +13,7 @@ PODS:
   - fmt (6.2.1)
   - glog (0.3.5)
   - KeyboardGuide (0.2.1)
-  - Kingfisher (7.3.1)
+  - Kingfisher (7.3.2)
   - RCT-Folly (2021.06.28.00-v2):
     - boost
     - DoubleConversion
@@ -277,14 +277,14 @@ PODS:
     - React-jsi (= 0.67.3)
     - React-logger (= 0.67.3)
     - React-perflogger (= 0.67.3)
-  - Screeb (1.8.2):
+  - Screeb (1.10.0):
     - Alamofire (~> 5.4)
     - KeyboardGuide (~> 0.2.1)
     - Kingfisher (~> 7.0)
     - Starscream (~> 4.0.0)
-  - screeb-module (0.8.4):
+  - screeb-module (0.8.5):
     - React-Core
-    - Screeb (~> 1.8.2)
+    - Screeb (~> 1.10.0)
   - Starscream (4.0.4)
   - Yoga (1.14.0)
 
@@ -405,7 +405,7 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 85ecdd10ee8d8ec362ef519a6a45ff9aa27b2e85
   KeyboardGuide: 1a30e6f6cac60f56ea94938bf9bc894bbc170be2
-  Kingfisher: f411ab4902e733fc0c40522920fb5a236d7a7334
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
   RCT-Folly: 803a9cfd78114b2ec0f140cfa6fa2a6bafb2d685
   RCTRequired: 3c77b683474faf23920fbefc71c4e13af21470c0
   RCTTypeSafety: 720b1841260dac692444c2822b27403178da8b28
@@ -430,8 +430,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: d0361f15ea978958fab7ffb6960f475b5063d83f
   React-runtimeexecutor: af1946623656f9c5fd64ca6f36f3863516193446
   ReactCommon: 650e33cde4fb7d36781cd3143f5276da0abb2f96
-  Screeb: 985579a2a7ee4bc183607dd2d0d9a42558723a62
-  screeb-module: ca5317c32060d9bccee66331fa8c66d97660f75d
+  Screeb: f1a01af58d66c493a7ac571f2ca672bcd20dccac
+  screeb-module: fa9bbb8d2dea782b4e1340dbfc62cd7280e19c82
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Yoga: 90dcd029e45d8a7c1ff059e8b3c6612ff409061a
 

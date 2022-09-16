@@ -43,6 +43,6 @@ export function setProperties(properties?: Map<string, any>) {
 export function startSurvey(surveyId: string, allowMultipleResponses: bool, hiddenFields?: Map<string, any>) {
   return ScreebModule.startSurvey(surveyId, allowMultipleResponses, hiddenFields);
 }
-export function assignGroup(name: string, type?: string, properties?: Map<string, any>) {
+export function assignGroup(type?: string, name: string, properties?: Map<string, any>) {
   return ScreebModule.assignGroup(name, type, properties);
 }
