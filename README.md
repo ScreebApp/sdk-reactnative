@@ -9,7 +9,7 @@
 
 A react-native module to integrate Screeb mobile sdk for Android and/or iOS.
 
-## How to install the iOS SDK in your app ?
+## How to install the React-Native SDK in your app ?
 
 [See here.](https://github.com/ScreebApp/developers/wiki/React-Native-SDK-install)
 
