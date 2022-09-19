@@ -9,19 +9,19 @@ const LINKING_ERROR =
 const ScreebModule = NativeModules.ScreebModule
   ? NativeModules.ScreebModule
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
 export function initSdk(
-    androidChannelId: string,
-    iosChannelId: string,
-    userId?: string,
-    properties?: Map<string, any>) {
+  androidChannelId: string,
+  iosChannelId: string,
+  userId?: string,
+  properties?: Map<string, any>) {
   if (Platform.OS === 'ios') {
     return ScreebModule.initSdk(iosChannelId, userId, properties);
   } else {
@@ -40,9 +40,9 @@ export function trackScreen(name: string, properties?: Map<string, any>) {
 export function setProperties(properties?: Map<string, any>) {
   return ScreebModule.setProperties(properties);
 }
-export function startSurvey(surveyId: string, allowMultipleResponses: bool, hiddenFields?: Map<string, any>) {
-  return ScreebModule.startSurvey(surveyId, allowMultipleResponses, hiddenFields);
+export function startSurvey(surveyId: string, allowMultipleResponses?: boolean, hiddenFields?: Map<string, any>) {
+  return ScreebModule.startSurvey(surveyId, allowMultipleResponses ?? true, hiddenFields);
 }
-export function assignGroup(type?: string, name: string, properties?: Map<string, any>) {
+export function assignGroup(type: string | null, name: string, properties?: Map<string, any>) {
   return ScreebModule.assignGroup(name, type, properties);
 }
