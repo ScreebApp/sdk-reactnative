@@ -25,7 +25,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Set identity"
-        onPress={setIdentity('react-user@screeb.app', {'isConnected': false,
+        onPress={() => setIdentity('react-user@screeb.app', {'isConnected': false,
                                                    'age': 29,
                                                    'product' : 'iPhone 13',
                                                    })}
@@ -34,7 +34,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Track event"
-        onPress={trackEvent('ReactModuleEvent', {'isConnected': false,
+        onPress={() => trackEvent('ReactModuleEvent', {'isConnected': false,
                                                    'age': 29,
                                                    'product' : 'iPhone 13',
                                                    })}
@@ -43,7 +43,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Track screen"
-        onPress={trackScreen('ReactModuleScreen', {'isConnected': false,
+        onPress={() => trackScreen('ReactModuleScreen', {'isConnected': false,
                                                    'age': 29,
                                                    'product' : 'iPhone 13',
                                                    })}
@@ -52,7 +52,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Set visitor properties"
-        onPress={setProperties({'isConnected': false,
+        onPress={() => setProperties({'isConnected': false,
                                 'age': 29,
                                 'product' : 'iPhone 13',
                                 })}
@@ -61,7 +61,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Start survey"
-        onPress={startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4",
+        onPress={() => startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4",
                              true,
                              null)}
      />
@@ -69,7 +69,7 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Assign group"
-        onPress={assignGroup("groupName",
+        onPress={() => assignGroup("groupName",
                              "groupType",
                              {'isConnected': false,
                               'age': 29,
