@@ -6,6 +6,8 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "log-android": "react-native log-android",
+    "log-ios": "react-native log-ios",
     "start": "react-native start"
   },
   "dependencies": {
