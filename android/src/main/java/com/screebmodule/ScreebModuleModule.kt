@@ -104,7 +104,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean, hiddenFields: ReadableMap? = null) {
+  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
     var map: HashMap<String, Any>? = null
     if (hiddenFields != null) {
