@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup } from '@screeb/react-native';
-import { unassignGroup } from 'screeb-module';
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup, unassignGroup } from '@screeb/react-native';
 
 export default function App() {
 
