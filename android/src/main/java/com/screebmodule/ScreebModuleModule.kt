@@ -111,7 +111,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       map = hiddenFields.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      Screeb.startSurvey(surveyId, allowMultipleResponses, map)
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map)
     }
   }
 

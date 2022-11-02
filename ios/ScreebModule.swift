@@ -23,7 +23,7 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func setIdentity(_ userId: String, properties properties_: [String: Any?]?) {
+  @objc func setIdentity(_ userId: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -33,7 +33,7 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func trackEvent(_ eventId: String, properties properties_: [String: Any?]?) {
+  @objc func trackEvent(_ eventId: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -43,7 +43,7 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func trackScreen(_ screen: String, properties properties_: [String: Any?]?) {
+  @objc func trackScreen(_ screen: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -54,7 +54,7 @@ class ScreebModule: NSObject {
   }
 
   @objc(setProperties:)
-  func setVisitorPropertiesImpl(_ properties: [String: Any?]) {
+  func setVisitorPropertiesImpl(_ properties: [String: Any]) {
     let map = self.mapToAnyEncodable(map: properties)
     DispatchQueue.main.async {
       Screeb.visitorProperty(visitorProperty: map)
@@ -71,7 +71,7 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func assignGroup(_ type: String?, name name_: String, properties properties_: [String: Any?]?) {
+  @objc func assignGroup(_ type: String?, name name_: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!).filter({ $0.value != nil }).mapValues({ $0! })
@@ -81,7 +81,7 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func unassignGroup(_ type: String?, name name_: String, properties properties_: [String: Any?]?) {
+  @objc func unassignGroup(_ type: String?, name name_: String, properties properties_: [String: Any]?) {
     var map: [String: AnyEncodable] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!).filter({ $0.value != nil }).mapValues({ $0! })
