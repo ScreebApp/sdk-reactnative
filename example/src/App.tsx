@@ -7,8 +7,8 @@ export default function App() {
 
   React.useEffect(() => {
     initSdk(
-      "082b7590-1621-4f72-8030-731a98cd1448",
-      "5c62c145-91f1-4abd-8aa2-63d7847db1e1",
+      "082b7590-1621-4f72-8030-731a98cd1448", // preview
+      "5c62c145-91f1-4abd-8aa2-63d7847db1e1",// preview
       "0021de43-6e44-443c-9903-2ab99f9c4233",
       // "react-native@screeb.app",
       {
