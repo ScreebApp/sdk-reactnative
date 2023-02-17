@@ -115,6 +115,38 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  @ReactMethod
+  fun debug(){
+    Log.d("ScreebModule","Called debug")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.debug()
+    }
+  }
+
+  @ReactMethod
+  fun debugTargeting(){
+    Log.d("ScreebModule","Called debugTargeting")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.debugTargeting()
+    }
+  }
+
+  @ReactMethod
+  fun resetIdentity(){
+    Log.d("ScreebModule","Called resetIdentity")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.resetIdentity()
+    }
+  }
+
+  @ReactMethod
+  fun closeSdk(){
+    Log.d("ScreebModule","Called closeSdk")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.closeSdk()
+    }
+  }
+
   companion object {
 
     @JvmStatic

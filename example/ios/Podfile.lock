@@ -353,14 +353,14 @@ PODS:
     - React-jsi (= 0.71.3)
     - React-logger (= 0.71.3)
     - React-perflogger (= 0.71.3)
-  - Screeb (1.10.5):
+  - Screeb (1.12.0):
     - Alamofire (~> 5.4)
     - KeyboardGuide (~> 0.2.1)
     - Kingfisher (~> 7.0)
     - Starscream (~> 4.0.0)
   - screeb-module (0.8.12):
     - React-Core
-    - Screeb (~> 1.10.4)
+    - Screeb (~> 1.12.0)
   - Starscream (4.0.4)
   - Yoga (1.14.0)
 
@@ -524,8 +524,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: 5199a180d04873366a83855de55ac33ce60fe4d5
   React-runtimeexecutor: 7bf0dafc7b727d93c8cb94eb00a9d3753c446c3e
   ReactCommon: 5f9a24e64c1c3e2b719014f07cb2acf628983000
-  Screeb: 1df43c7f94916684bc5c2e35a7eb451e82846feb
-  screeb-module: c8558afb5aee23df8980cef1d23d7349d4cc1a6a
+  Screeb: a4423125d62cda6f7d586080a9ec96a6f6a9f72d
+  screeb-module: 3a67130f5ef5e58e84b2ab957f85a3986c8fdc12
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Yoga: 5ed1699acbba8863755998a4245daa200ff3817b
 

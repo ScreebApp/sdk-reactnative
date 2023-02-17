@@ -49,3 +49,15 @@ export function trackScreen(name: string, properties?: Map<string, any>) {
 export function startSurvey(surveyId: string, allowMultipleResponses?: boolean, hiddenFields?: Map<string, any>) {
   return ScreebModule.startSurvey(surveyId, allowMultipleResponses ?? true, hiddenFields);
 }
+export function debug(){
+  return ScreebModule.debug();
+}
+export function debugTargeting(){
+  return ScreebModule.debugTargeting();
+}
+export function resetIdentity(){
+  return ScreebModule.resetIdentity();
+}
+export function closeSdk(){
+  return ScreebModule.closeSdk();
+}
