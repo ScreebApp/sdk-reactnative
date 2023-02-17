@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup, unassignGroup } from '@screeb/react-native';
+import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup, unassignGroup, debug, debugTargeting } from '@screeb/react-native';
 
 export default function App() {
 
@@ -111,6 +111,18 @@ export default function App() {
             'age': null,
             'product': 'iPhone 13',
           })}
+      />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="debug"
+        onPress={() => debug()}
+      />
+      <View style={styles.space} />
+      <Button
+        style={styles.sectionButton}
+        title="debug targeting"
+        onPress={() => debugTargeting()}
       />
     </View>
   );
