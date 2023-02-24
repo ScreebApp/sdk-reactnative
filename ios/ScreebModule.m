@@ -10,6 +10,10 @@ RCT_EXTERN_METHOD(unassignGroup:(NSString *)type name:(NSString *)name_ properti
 RCT_EXTERN_METHOD(trackEvent:(NSString *)eventId properties:(NSDictionary<NSString *, id> *)properties_)
 RCT_EXTERN_METHOD(trackScreen:(NSString *)screen properties:(NSDictionary<NSString *, id> *)properties_)
 RCT_EXTERN_METHOD(startSurvey:(NSString *)surveyId allowMultipleResponses:(BOOL)allowMultipleResponses_ hiddenFields:(NSDictionary<NSString *, id> *)hiddenFields_)
+RCT_EXTERN_METHOD(debug)
+RCT_EXTERN_METHOD(debugTargeting)
+RCT_EXTERN_METHOD(closeSdk)
+RCT_EXTERN_METHOD(resetIdentity)
 + (BOOL)requiresMainQueueSetup
 {
   return YES;

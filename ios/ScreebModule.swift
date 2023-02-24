@@ -91,6 +91,30 @@ class ScreebModule: NSObject {
     }
   }
 
+  @objc func debug(){
+    DispatchQueue.main.async {
+      Screeb.debug()
+    }
+  }
+
+  @objc func debugTargeting(){
+    DispatchQueue.main.async {
+      Screeb.debugTargeting()
+    }
+  }
+
+  @objc func resetIdentity(){
+    DispatchQueue.main.async {
+      Screeb.resetIdentity()
+    }
+  }
+
+  @objc func closeSdk(){
+    DispatchQueue.main.async {
+      Screeb.closeSdk()
+    }
+  }
+
   private func mapToAnyEncodable(map: [String: Any]) -> [String: AnyEncodable?] {
       return map.mapValues{
           value in
