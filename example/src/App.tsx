@@ -8,8 +8,8 @@ export default function App() {
   React.useEffect(() => {
     initSdk(
       "082b7590-1621-4f72-8030-731a98cd1448", // preview
-      "5c62c145-91f1-4abd-8aa2-63d7847db1e1",// preview
-      "0021de43-6e44-443c-9903-2ab99f9c4233",
+      "5c62c145-91f1-4abd-8aa2-63d7847db1e1", // preview
+      "0021de43-6e44-443c-9903-2ab99f9c4233", // https://admin.screeb.app/org/73bd089b-61e3-49f4-86d5-08f1da50941d/people/respondent/f4776019-24d9-49aa-9e5d-a4a5a1d44ab1
       // "react-native@screeb.app",
       {
         // 'isConnected': false,
