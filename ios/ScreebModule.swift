@@ -61,13 +61,13 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?) {
+  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?,ignoreSurveyStatus ignoreSurveyStatus_: Bool) {
     var map: [String: AnyEncodable] = [:]
     if (hiddenFields_ != nil) {
         map = self.mapToAnyEncodable(map: hiddenFields_!).filter({ $0.value != nil }).mapValues({ $0! })
     }
     DispatchQueue.main.async {
-      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map)
+      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_)
     }
   }
 
