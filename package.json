@@ -1,6 +1,6 @@
 {
   "name": "@screeb/react-native",
-  "version": "0.8.15",
+  "version": "0.8.16",
   "description": "A react-native module to integrate Screeb mobile sdk for Android and/or iOS.",
   "scripts": {
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
