@@ -1,10 +1,20 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { initSdk, trackScreen, trackEvent, setProperties, setIdentity, startSurvey, assignGroup, unassignGroup, debug, debugTargeting } from '@screeb/react-native';
+import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  initSdk,
+  trackScreen,
+  trackEvent,
+  setProperties,
+  setIdentity,
+  startSurvey,
+  assignGroup,
+  unassignGroup,
+  debug,
+  debugTargeting,
+} from "@screeb/react-native";
 
 export default function App() {
-
   React.useEffect(() => {
     initSdk(
       "082b7590-1621-4f72-8030-731a98cd1448", // preview
@@ -27,7 +37,6 @@ export default function App() {
     // })
     // }, 1000);
 
-
     // setTimeout(() => {
     // trackScreen('ReactModuleHomeScreen', {
     //   'isConnected': false,
@@ -35,7 +44,6 @@ export default function App() {
     //   'product': 'iPhone 13',
     // })
     // }, 5000)
-
   }, []);
 
   return (
@@ -44,73 +52,79 @@ export default function App() {
       <Button
         style={styles.sectionButton}
         title="Set identity"
-        onPress={() => setIdentity('react-user@screeb.app', {
-          'isConnected': false,
-          'age': 29,
-          'product': 'iPhone 13',
-        })}
+        onPress={() =>
+          setIdentity("react-user@screeb.app", {
+            isConnected: false,
+            age: 29,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Track event"
-        onPress={() => trackEvent('ReactModuleEvent', {
-          'isConnected': false,
-          'age': 29,
-          'product': 'iPhone 13',
-        })}
+        onPress={() =>
+          trackEvent("ReactModuleEvent", {
+            isConnected: false,
+            age: 29,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Track screen"
-        onPress={() => trackScreen('ReactModuleScreen', {
-          'isConnected': false,
-          'age': 29,
-          'product': 'iPhone 13',
-        })}
+        onPress={() =>
+          trackScreen("ReactModuleScreen", {
+            isConnected: false,
+            age: 29,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Set visitor properties"
-        onPress={() => setProperties({
-          'isConnected': false,
-          'age': 29,
-          'product': 'iPhone 13',
-        })}
+        onPress={() =>
+          setProperties({
+            isConnected: false,
+            age: 29,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Start survey"
-        onPress={() => startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4",
-          true,
-          null)}
+        onPress={() =>
+          startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4", true, null, true)
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Assign group"
-        onPress={() => assignGroup(
-          null,
-          "Apple",
-          {
-            'age': null,
-            'product': 'iPhone 13',
-          })}
+        onPress={() =>
+          assignGroup(null, "Apple", {
+            age: null,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
         style={styles.sectionButton}
         title="Unassign group"
-        onPress={() => unassignGroup(
-          null,
-          "Apple",
-          {
-            'age': null,
-            'product': 'iPhone 13',
-          })}
+        onPress={() =>
+          unassignGroup(null, "Apple", {
+            age: null,
+            product: "iPhone 13",
+          })
+        }
       />
       <View style={styles.space} />
       <Button
@@ -131,8 +145,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   box: {
     width: 60,
@@ -144,7 +158,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "600",
     marginBottom: 32,
   },
   space: {

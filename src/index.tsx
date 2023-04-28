@@ -46,8 +46,8 @@ export function trackEvent(name: string, properties?: Map<string, any>) {
 export function trackScreen(name: string, properties?: Map<string, any>) {
   return ScreebModule.trackScreen(name, properties);
 }
-export function startSurvey(surveyId: string, allowMultipleResponses?: boolean, hiddenFields?: Map<string, any>) {
-  return ScreebModule.startSurvey(surveyId, allowMultipleResponses ?? true, hiddenFields);
+export function startSurvey(surveyId: string, allowMultipleResponses?: boolean, hiddenFields?: Map<string, any>, ignoreSurveyStatus?: boolean) {
+  return ScreebModule.startSurvey(surveyId, allowMultipleResponses ?? true, hiddenFields, ignoreSurveyStatus ?? true);
 }
 export function debug(){
   return ScreebModule.debug();

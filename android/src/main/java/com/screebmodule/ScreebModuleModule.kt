@@ -104,14 +104,14 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null) {
+  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
     var map: HashMap<String, Any>? = null
     if (hiddenFields != null) {
       map = hiddenFields.toHashMap()
     }
     Handler(Looper.getMainLooper()).post {
-      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map)
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true)
     }
   }
 
