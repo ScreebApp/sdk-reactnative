@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext"],
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -22,8 +22,6 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "declaration": true,
-    "declarationDir": "./lib/typescript",
-    "outDir": "./lib/module"
+    "outDir": "./lib/commonjs"
   }
 }
