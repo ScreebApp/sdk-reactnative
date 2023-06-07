@@ -1,6 +1,6 @@
 {
   "name": "@screeb/react-native",
-  "version": "0.8.18",
+  "version": "0.8.20",
   "description": "A react-native module to integrate Screeb mobile sdk for Android and/or iOS.",
   "scripts": {
     "clean": "rm -rf lib/",
