@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.7.1)
   - boost (1.76.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.71.3)
@@ -15,8 +14,6 @@ PODS:
   - hermes-engine (0.71.3):
     - hermes-engine/Pre-built (= 0.71.3)
   - hermes-engine/Pre-built (0.71.3)
-  - KeyboardGuide (0.2.1)
-  - Kingfisher (7.7.0)
   - libevent (2.1.12)
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -353,15 +350,10 @@ PODS:
     - React-jsi (= 0.71.3)
     - React-logger (= 0.71.3)
     - React-perflogger (= 0.71.3)
-  - Screeb (1.13.2):
-    - Alamofire (~> 5.4)
-    - KeyboardGuide (~> 0.2.1)
-    - Kingfisher (~> 7.0)
-    - Starscream (~> 4.0.0)
-  - screeb-module (0.8.21):
+  - Screeb (2.0.0-rc.3)
+  - screeb-module (1.0.0-rc.1):
     - React-Core
-    - Screeb (~> 1.13.2)
-  - Starscream (4.0.4)
+    - Screeb (~> 2.0.0-rc.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -405,13 +397,9 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - fmt
-    - KeyboardGuide
-    - Kingfisher
     - libevent
     - Screeb
-    - Starscream
 
 EXTERNAL SOURCES:
   boost:
@@ -486,7 +474,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 60195509584153283780abdac5569feffb8f08cc
@@ -494,8 +481,6 @@ SPEC CHECKSUMS:
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 38bfe887e456b33b697187570a08de33969f5db7
-  KeyboardGuide: 1a30e6f6cac60f56ea94938bf9bc894bbc170be2
-  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: bec48f07daf7bcdc2655a0cde84e07d24d2a9e2a
@@ -524,9 +509,8 @@ SPEC CHECKSUMS:
   React-RCTVibration: 5199a180d04873366a83855de55ac33ce60fe4d5
   React-runtimeexecutor: 7bf0dafc7b727d93c8cb94eb00a9d3753c446c3e
   ReactCommon: 5f9a24e64c1c3e2b719014f07cb2acf628983000
-  Screeb: 73cc62b991dbccebc7b8afb59e5d7cf519277f11
-  screeb-module: 92e8126ac23bd768a8b694b43a9cade1487887e3
-  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Screeb: ddcbe411fdd58605916b2312c97b4432b335b328
+  screeb-module: 55d0ba7a35c4bd5daf428ccb4d87979d6e0a08f6
   Yoga: 5ed1699acbba8863755998a4245daa200ff3817b
 
 PODFILE CHECKSUM: 003dd3183d32ecdc768c42db97ac8576d189e2b2

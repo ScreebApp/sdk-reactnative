@@ -10,11 +10,11 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "12.4" }
+  s.platforms    = { :ios => "11.0" }
   s.source       = { :git => "https://github.com/ScreebApp/sdk-reactnative.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency "Screeb", '~> 1.13.2'
+  s.dependency "Screeb", '~> 2.0.0-rc.3'
 end
