@@ -123,6 +123,6 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 dependencies {
   // noinspection GradleDynamicVersion
   api 'com.facebook.react:react-native:+'
-  implementation "app.screeb.sdk:survey:2.0.0-rc.1"
+  implementation "app.screeb.sdk:survey:2.0.0-rc.2"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:1.7.0"
 }
