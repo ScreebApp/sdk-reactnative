@@ -17,8 +17,8 @@ import {
 export default function App() {
   React.useEffect(() => {
     initSdk(
-      "082b7590-1621-4f72-8030-731a98cd1448", // preview
-      "5c62c145-91f1-4abd-8aa2-63d7847db1e1", // preview
+      "3844713b-999b-41b1-a375-e36196640988", // preview
+      "9dc1c517-3e48-4542-9c17-e43e8258d925", // preview
       "0021de43-6e44-443c-9903-2ab99f9c4233", // https://admin.screeb.app/org/73bd089b-61e3-49f4-86d5-08f1da50941d/people/respondent/f4776019-24d9-49aa-9e5d-a4a5a1d44ab1
       // "react-native@screeb.app",
       {
@@ -101,7 +101,18 @@ export default function App() {
         style={styles.sectionButton}
         title="Start survey"
         onPress={() =>
-          startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4", true, null, true)
+          startSurvey(
+            "1b1fe0c4-d41d-4307-9ca0-b0b66cce8cff",
+            true,
+            null,
+            true,
+            {
+              version: "1.0.0",
+              onSurveyShowed: (payload: any) => {
+                console.log("onSurveyShowed", payload);
+              },
+            }
+          )
         }
       />
       <View style={styles.space} />

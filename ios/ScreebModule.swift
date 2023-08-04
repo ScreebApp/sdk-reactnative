@@ -3,20 +3,32 @@ import UIKit
 import Foundation
 
 @objc(ScreebModule)
-class ScreebModule: NSObject {
+class ScreebModule: RCTEventEmitter {
 
-  @objc(initSdk:userId:properties:)
+    @objc(initSdk:userId:properties:hooks:)
   func initSdk(
       _ channelId: String,
       userId userId_: String?,
-      properties properties_: [String: Any]?) {
+      properties properties_: [String: Any]?,
+      hooks hooks_: [String: Any]?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
     }
+    var mapHooks: [String: Any?]? = nil
+    if (hooks_ != nil) {
+      mapHooks = [:]
+      hooks_?.forEach{ hook in
+        if(hook.key == "version"){
+          mapHooks![hook.key] = hook.value as? String
+        } else {
+          mapHooks![hook.key] = {(payload:Any) -> () in self.sendEvent(withName: "ScreebEvent", body: ["hookId":hook.value,"payload":String(describing: payload)]) }
+        }
+      }
+    }
     if let controller = UIApplication.shared.keyWindow?.rootViewController {
         DispatchQueue.main.async {
-          Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map)
+          Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks)
         }
     } else {
         print("Screeb : error init, could not find rootViewController")
@@ -61,13 +73,24 @@ class ScreebModule: NSObject {
     }
   }
 
-  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?,ignoreSurveyStatus ignoreSurveyStatus_: Bool) {
+  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?,ignoreSurveyStatus ignoreSurveyStatus_: Bool, hooks hooks_: [String: Any]?) {
     var map: [String: AnyEncodable] = [:]
     if (hiddenFields_ != nil) {
         map = self.mapToAnyEncodable(map: hiddenFields_!).filter({ $0.value != nil }).mapValues({ $0! })
     }
+    var mapHooks: [String: Any?]? = nil
+    if (hooks_ != nil) {
+      mapHooks = [:]
+      hooks_?.forEach{ hook in
+        if(hook.key == "version"){
+            mapHooks![hook.key] = hook.value as? String
+        } else {
+            mapHooks![hook.key] = {(payload:Any) -> () in self.sendEvent(withName: "ScreebEvent", body: ["hookId":hook.value,"payload":String(describing: payload)]) }
+        }
+      }
+    }
     DispatchQueue.main.async {
-      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_)
+        Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_, hooks: mapHooks)
     }
   }
 
@@ -131,5 +154,9 @@ class ScreebModule: NSObject {
           }
           return nil
       }
+  }
+    
+  override func supportedEvents() -> [String]! {
+    return ["ScreebEvent"]
   }
 }

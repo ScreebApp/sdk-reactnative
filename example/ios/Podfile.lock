@@ -353,7 +353,7 @@ PODS:
   - Screeb (2.0.0)
   - screeb-module (1.0.0-rc.2):
     - React-Core
-    - Screeb (~> 2.0.0-rc.3)
+    - Screeb (~> 2.0.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -510,9 +510,9 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 7902246857a4ead4166869e6c42d4df329ff721d
   ReactCommon: a023fdfe1c3bd4d465153915a45d8eda51172a45
   Screeb: ffe7cea60ec8ac183d0f10299ac2d4a2d71bc4aa
-  screeb-module: db78d261ba9ead7a4ede27167151a319590df987
+  screeb-module: a94d25547415aaf9d0da5e5a7e3bd4598b19ad4e
   Yoga: 39310a10944fc864a7550700de349183450f8aaa
 
-PODFILE CHECKSUM: 0e36fbc4baca979129c80e6a8b1f379fffd2e112
+PODFILE CHECKSUM: 97b09a37df1ae8e37bcb45f71236ef0c88d3a666
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.11.3
