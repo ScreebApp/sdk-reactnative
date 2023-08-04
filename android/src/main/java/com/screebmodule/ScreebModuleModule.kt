@@ -5,6 +5,10 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableArray
+import com.facebook.react.bridge.WritableNativeMap
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.modules.core.DeviceEventManagerModule
 import java.util.HashMap
 import androidx.annotation.NonNull
 import android.content.Context
@@ -21,14 +25,31 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?) {
+  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
     var map: HashMap<String, Any?>? = null
     if (properties != null) {
       map = properties.toHashMap()
     }
+    var mapHooks:HashMap<String, Any>? = null
+    if (hooks != null) {
+      mapHooks = hashMapOf<String, Any>()
+      val hooksKeys = hooks.keySetIterator()
+      while (hooksKeys.hasNextKey()) {
+        val key = hooksKeys.nextKey()
+        val value = hooks.getString(key)
+        if (key == "version"){
+          mapHooks[key] = value!!
+        } else {
+          mapHooks[key] = { payload:Any -> this.reactApplicationContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java).emit("ScreebEvent",  Arguments.createMap().apply {
+            putString("hookId", value!!)
+            putString("payload", payload.toString())
+        }) }
+        }
+      }
+    }
     Handler(Looper.getMainLooper()).post {
-      Screeb.pluginInit(channelId, userId, map)
+      Screeb.pluginInit(channelId, userId, map, mapHooks)
     }
   }
 
@@ -104,14 +125,31 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true) {
+  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true, hooks: ReadableMap? = null) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
     var map: HashMap<String, Any>? = null
     if (hiddenFields != null) {
       map = hiddenFields.toHashMap()
     }
+    var mapHooks:HashMap<String, Any>? = null
+    if (hooks != null) {
+      mapHooks = hashMapOf<String, Any>()
+      val hooksKeys = hooks.keySetIterator()
+      while (hooksKeys.hasNextKey()) {
+        val key = hooksKeys.nextKey()
+        val value = hooks.getString(key)
+        if (key == "version"){
+          mapHooks[key] = value!!
+        } else {
+          mapHooks[key] = { payload:Any -> this.reactApplicationContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java).emit("ScreebEvent",  Arguments.createMap().apply {
+            putString("hookId", value!!)
+            putString("payload", payload.toString())
+        }) }
+        }
+      }
+    }
     Handler(Looper.getMainLooper()).post {
-      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true)
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks)
     }
   }
 

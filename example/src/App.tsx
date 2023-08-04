@@ -101,7 +101,18 @@ export default function App() {
         style={styles.sectionButton}
         title="Start survey"
         onPress={() =>
-          startSurvey("8dd42ae1-f716-429c-9843-fad62adf2ac4", true, null, true)
+          startSurvey(
+            "8dd42ae1-f716-429c-9843-fad62adf2ac4",
+            true,
+            null,
+            true,
+            {
+              version: "1.0.0",
+              onSurveyShowed: (payload: any) => {
+                console.log("onSurveyShowed", payload);
+              },
+            }
+          )
         }
       />
       <View style={styles.space} />
