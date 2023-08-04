@@ -26,6 +26,12 @@ export default function App() {
         // 'age': 29,
         // 'product': 'iPhone 13',
         // 'email': 'e2e@screeb.app',
+      },
+      {
+        version: "1.0.0",
+        onReady: (payload: any) => {
+          console.log("onReady", payload);
+        },
       }
     );
 

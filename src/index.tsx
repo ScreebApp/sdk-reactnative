@@ -29,7 +29,7 @@ export function initSdk(
   iosChannelId: string,
   userId?: string,
   properties?: Map<string, any>,
-  hooks?: Map<string, any>
+  hooks?: any
 ) {
   const emitter =
     Platform.OS === "ios"
@@ -92,7 +92,7 @@ export function startSurvey(
   allowMultipleResponses?: boolean,
   hiddenFields?: Map<string, any>,
   ignoreSurveyStatus?: boolean,
-  hooks?: Map<string, any>
+  hooks?: any
 ) {
   let mapHooksId: any = undefined;
   if (hooks != undefined) {
