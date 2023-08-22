@@ -1,6 +1,6 @@
 {
   "name": "@screeb/react-native",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Continuous Product Discovery",
   "scripts": {
     "clean": "rm -rf lib/",
@@ -55,5 +55,8 @@
     "react": "*",
     "react-native": "*"
   },
-  "types": "./lib/typescript/index.d.ts"
+  "types": "./lib/typescript/index.d.ts",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
 }
