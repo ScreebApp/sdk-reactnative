@@ -26,12 +26,13 @@ class ScreebModule: RCTEventEmitter {
         }
       }
     }
-    if let controller = UIApplication.shared.keyWindow?.rootViewController {
-        DispatchQueue.main.async {
-          Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks)
-        }
-    } else {
+
+    DispatchQueue.main.async {
+      if let controller = UIApplication.shared.keyWindow?.rootViewController {
+        Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks)
+      } else {
         print("Screeb : error init, could not find rootViewController")
+      }
     }
   }
 
@@ -90,7 +91,7 @@ class ScreebModule: RCTEventEmitter {
       }
     }
     DispatchQueue.main.async {
-        Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_, hooks: mapHooks)
+      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_, hooks: mapHooks)
     }
   }
 
@@ -155,7 +156,7 @@ class ScreebModule: RCTEventEmitter {
           return nil
       }
   }
-    
+
   override func supportedEvents() -> [String]! {
     return ["ScreebEvent"]
   }
