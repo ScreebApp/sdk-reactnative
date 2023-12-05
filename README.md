@@ -13,7 +13,7 @@ A react-native module to integrate Screeb mobile sdk for Android and/or iOS.
 
 [See here.](https://github.com/ScreebApp/developers/wiki/React-Native-SDK-install)
 
-## Changelog
+## Changelog
 
 [See here.](https://www.notion.so/screeb/ReactNative-SDK-30e8dc27fa7a4dea979084d83e5140c3)
 
