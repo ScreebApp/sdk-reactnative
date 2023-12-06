@@ -28,11 +28,7 @@ class ScreebModule: RCTEventEmitter {
     }
 
     DispatchQueue.main.async {
-      if let controller = UIApplication.shared.keyWindow?.rootViewController {
-        Screeb.initSdk(context: controller, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks)
-      } else {
-        print("Screeb : error init, could not find rootViewController")
-      }
+      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks)
     }
   }
 
