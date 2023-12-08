@@ -29,7 +29,8 @@ export function initSdk(
   iosChannelId: string,
   userId?: string,
   properties?: Map<string, any>,
-  hooks?: any
+  hooks?: any,
+  isDebugMode?: boolean
 ) {
   const emitter =
     Platform.OS === "ios"
@@ -51,13 +52,20 @@ export function initSdk(
     });
   }
   if (Platform.OS === "ios") {
-    return ScreebModule.initSdk(iosChannelId, userId, properties, mapHooksId);
+    return ScreebModule.initSdk(
+      iosChannelId,
+      userId,
+      properties,
+      mapHooksId,
+      isDebugMode
+    );
   } else {
     return ScreebModule.initSdk(
       androidChannelId,
       userId,
       properties,
-      mapHooksId
+      mapHooksId,
+      isDebugMode
     );
   }
 }
@@ -127,6 +135,9 @@ export function resetIdentity() {
 }
 export function closeSdk() {
   return ScreebModule.closeSdk();
+}
+export function closeSurvey() {
+  return ScreebModule.closeSurvey();
 }
 
 function handleEvent(event: any) {

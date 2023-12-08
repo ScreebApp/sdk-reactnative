@@ -14,6 +14,8 @@ import androidx.annotation.NonNull
 import android.content.Context
 import android.util.Log
 import app.screeb.sdk.Screeb
+import android.os.Handler
+import android.os.Looper
 
 class ScreebModuleModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -23,7 +25,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?) {
+  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, isDebugMode: Boolean? = false) {
     Log.d("ScreebModule", "Called initSdk : $userId")
     var map: HashMap<String, Any?>? = null
     if (properties != null) {
@@ -46,7 +48,16 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
         }
       }
     }
-    Screeb.pluginInit(channelId, userId, map, mapHooks)
+
+    // TODO: pass to pluginInit
+    var initOptions = Screeb.InitOptions()
+    if (isDebugMode != null) {
+      initOptions.isDebugMode = isDebugMode
+    }
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.pluginInit(channelId, userId, map, mapHooks)
+    }
   }
 
   @ReactMethod
@@ -56,7 +67,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    Screeb.setIdentity(userId, map)
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.setIdentity(userId, map)
+    }
   }
 
   @ReactMethod
@@ -65,7 +79,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       "ScreebModule",
       "Called setVisitorProperties with " + properties.toHashMap().size + " properties"
     )
-    Screeb.setVisitorProperties(properties.toHashMap())
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.setVisitorProperties(properties.toHashMap())
+    }
   }
 
   @ReactMethod
@@ -75,7 +92,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    Screeb.assignGroup(type, name, map)
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.assignGroup(type, name, map)
+    }
   }
 
   @ReactMethod
@@ -85,7 +105,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    Screeb.unassignGroup(type, name, map)
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.unassignGroup(type, name, map)
+    }
   }
 
   @ReactMethod
@@ -95,7 +118,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    Screeb.trackEvent(eventId, map)
+
+    Handler(Looper.getMainLooper()).post {
+      Screeb.trackEvent(eventId, map)
+    }
   }
 
   @ReactMethod
@@ -105,7 +131,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     if (properties != null) {
       map = properties.toHashMap()
     }
-    Screeb.trackScreen(screen, map)
+    Handler(Looper.getMainLooper()).post {
+      Screeb.trackScreen(screen, map)
+    }
   }
 
   @ReactMethod
@@ -132,7 +160,9 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
         }
       }
     }
-    Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks)
+    Handler(Looper.getMainLooper()).post {
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks)
+    }
   }
 
   @ReactMethod
@@ -144,18 +174,32 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun debugTargeting(){
     Log.d("ScreebModule","Called debugTargeting")
-    Screeb.debugTargeting()
+    Handler(Looper.getMainLooper()).post {
+      Screeb.debugTargeting()
+    }
   }
 
   @ReactMethod
   fun resetIdentity(){
     Log.d("ScreebModule","Called resetIdentity")
-    Screeb.resetIdentity()
+    Handler(Looper.getMainLooper()).post {
+      Screeb.resetIdentity()
+    }
   }
 
   @ReactMethod
   fun closeSdk(){
     Log.d("ScreebModule","Called closeSdk")
-    Screeb.closeSdk()
+    Handler(Looper.getMainLooper()).post {
+      Screeb.closeSdk()
+    }
+  }
+
+  @ReactMethod
+  fun closeSurvey(){
+    Log.d("ScreebModule","Called closeSurvey")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.closeSurvey()
+    }
   }
 }

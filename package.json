@@ -1,12 +1,10 @@
 {
   "name": "@screeb/react-native",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "Continuous Product Discovery",
   "scripts": {
     "clean": "rm -rf lib/",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "example": "yarn --cwd example",
-    "pods": "cd example && pod-install --quiet",
     "build": "npm run clean ; tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json"
   },
   "react-native": "src/index",
