@@ -4,13 +4,13 @@ import Foundation
 
 @objc(ScreebModule)
 class ScreebModule: RCTEventEmitter {
-  @objc(initSdk:userId:properties:hooks:)
+  @objc(initSdk:userId:properties:hooks:isDebugMode:)
   func initSdk(
       _ channelId: String,
       userId userId_: String?,
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
-      isDebugMode isDebugMode_: Bool?) {
+      isDebugMode isDebugMode_: Any?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -27,13 +27,13 @@ class ScreebModule: RCTEventEmitter {
       }
     }
 
-    var initOptions = Screeb.InitOptions()
+    var initOptions = InitOptions()
     if (isDebugMode_ != nil) {
-      initOptions.isDebugMode = isDebugMode_!
+      initOptions = InitOptions(isDebugMode: isDebugMode_ as! Bool)
     }
 
     DispatchQueue.main.async {
-      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: map, hooks: mapHooks, initOptions: initOptions)
+      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: map, initOptions: initOptions, hooks: mapHooks)
     }
   }
 
