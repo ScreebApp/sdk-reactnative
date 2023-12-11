@@ -25,7 +25,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, isDebugMode: Boolean? = false) {
+  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
     var map: HashMap<String, Any?>? = null
     if (properties != null) {
@@ -51,9 +51,6 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
 
     // TODO: pass to pluginInit
     var initOptions = Screeb.InitOptions()
-    if (isDebugMode != null) {
-      initOptions.isDebugMode = isDebugMode
-    }
 
     Handler(Looper.getMainLooper()).post {
       Screeb.pluginInit(channelId, userId, map, mapHooks)

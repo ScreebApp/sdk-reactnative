@@ -4,13 +4,13 @@ import Foundation
 
 @objc(ScreebModule)
 class ScreebModule: RCTEventEmitter {
-  @objc(initSdk:userId:properties:hooks:isDebugMode:)
+  @objc(initSdk:userId:properties:hooks:initOptions:)
   func initSdk(
       _ channelId: String,
       userId userId_: String?,
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
-      isDebugMode isDebugMode_: Any?) {
+      initOptions initOptions_: [String: Any]?) {
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -19,7 +19,7 @@ class ScreebModule: RCTEventEmitter {
     if (hooks_ != nil) {
       mapHooks = [:]
       hooks_?.forEach{ hook in
-        if(hook.key == "version"){
+        if (hook.key == "version") {
           mapHooks![hook.key] = hook.value as? String
         } else {
           mapHooks![hook.key] = {(payload:Any) -> () in self.sendEvent(withName: "ScreebEvent", body: ["hookId":hook.value,"payload":String(describing: payload)]) }
@@ -28,8 +28,10 @@ class ScreebModule: RCTEventEmitter {
     }
 
     var initOptions = InitOptions()
-    if (isDebugMode_ != nil) {
-      initOptions = InitOptions(isDebugMode: isDebugMode_ as! Bool)
+    initOptions?.forEach{ option in
+      if (option.key == "isDebugMode") {
+        initOptions = InitOptions(isDebugMode: option.value as! Bool)
+      }
     }
 
     DispatchQueue.main.async {

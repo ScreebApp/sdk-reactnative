@@ -486,7 +486,7 @@ PODS:
     - React-logger (= 0.72.7)
     - React-perflogger (= 0.72.7)
   - Screeb (2.0.5)
-  - screeb-module (2.0.13):
+  - screeb-module (2.0.14):
     - React-Core
     - Screeb (~> 2.0.5)
   - SocketRocket (0.6.1)
@@ -713,7 +713,7 @@ SPEC CHECKSUMS:
   React-utils: 56838edeaaf651220d1e53cd0b8934fb8ce68415
   ReactCommon: 5f704096ccf7733b390f59043b6fa9cc180ee4f6
   Screeb: 350a4fa1d690fec7975788e4f09b2a0ec470034e
-  screeb-module: e672e60f25f224640ac36d2f91487b3b1120751b
+  screeb-module: 2ffda33faf6aa935dc1f0f0226873bfaf87b7b87
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 4c3aa327e4a6a23eeacd71f61c81df1bcdf677d5
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

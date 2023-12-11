@@ -32,7 +32,9 @@ function App(): JSX.Element {
           console.log('onReady', payload);
         },
       },
-      true,
+      {
+        isDebugMode: true,
+      },
     );
 
     // trackScreen('Dashboard')
