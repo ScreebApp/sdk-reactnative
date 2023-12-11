@@ -30,7 +30,7 @@ class ScreebModule: RCTEventEmitter {
     var initOptions = InitOptions()
     initOptions_?.forEach{ option in
       if (option.key == "isDebugMode") {
-        initOptions = InitOptions(isDebugMode: option.value as! Bool)
+        initOptions = InitOptions(isDebugMode: option.value as? Bool)
       }
     }
 

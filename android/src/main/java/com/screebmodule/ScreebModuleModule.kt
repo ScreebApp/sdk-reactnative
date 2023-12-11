@@ -13,6 +13,7 @@ import java.util.HashMap
 import androidx.annotation.NonNull
 import android.content.Context
 import android.util.Log
+import app.screeb.sdk.InitOptions
 import app.screeb.sdk.Screeb
 import android.os.Handler
 import android.os.Looper
@@ -50,7 +51,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     }
 
     // TODO: pass to pluginInit
-    var initOptions = Screeb.InitOptions()
+    var initOptions = InitOptions()
 
     Handler(Looper.getMainLooper()).post {
       Screeb.pluginInit(channelId, userId, map, mapHooks)
