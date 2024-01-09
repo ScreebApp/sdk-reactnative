@@ -11,6 +11,7 @@ class ScreebModule: RCTEventEmitter {
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
       initOptions initOptions_: [String: Any]?) {
+    Screeb.setSecondarySDK(name: "react-native", version: "2.0.20")
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
