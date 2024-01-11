@@ -149,22 +149,30 @@ class ScreebModule: RCTEventEmitter {
     }
   }
 
-  private func mapToAnyEncodable(map: [String: Any]) -> [String: AnyEncodable?] {
-      return map.mapValues{
-          value in
-          switch value {
-          case is String:
-              return AnyEncodable(value as! String)
-          case is Bool:
-              return AnyEncodable(value as! Bool)
-          case is Float:
-              return AnyEncodable(value as! Float)
-          case is Int:
-              return AnyEncodable(value as! Int)
-          default: break
-          }
-          return nil
+  private func mapToAnyEncodable(map: [String: Any?]?) -> [String: AnyEncodable?] {
+      var anyEncodableMap: [String: AnyEncodable?] = [:]
+      map?.forEach { key, value in
+        if let nsValue = value as? NSNumber {
+            if CFBooleanGetTypeID() == CFGetTypeID(nsValue) {
+                anyEncodableMap[key] = AnyEncodable(nsValue.boolValue)
+            } else if let value = value as? Int {
+                anyEncodableMap[key] = AnyEncodable(value)
+            } else if let value = value as? Double {
+                anyEncodableMap[key] = AnyEncodable(value)
+            } else if let value = value as? Float {
+                anyEncodableMap[key] = AnyEncodable(value)
+            } else {
+                anyEncodableMap[key] = nil
+            }
+        } else if let value = value as? String {
+            anyEncodableMap[key] = AnyEncodable(value)
+        } else if let value = value as? [String: Any?] {
+            anyEncodableMap[key] = AnyEncodable(self.mapToAnyEncodable(map: value))
+        } else {
+            anyEncodableMap[key] = nil
+        }
       }
+      return anyEncodableMap
   }
 
   override func supportedEvents() -> [String]! {
