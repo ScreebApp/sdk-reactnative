@@ -33,7 +33,7 @@ function App(): JSX.Element {
         },
       },
       {
-        isDebugMode: true,
+        isDebugMode: false,
       },
     );
 
