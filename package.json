@@ -1,6 +1,6 @@
 {
   "name": "@screeb/react-native",
-  "version": "2.0.23",
+  "version": "2.1.0",
   "description": "Continuous Product Discovery",
   "scripts": {
     "clean": "rm -rf lib/",
@@ -39,7 +39,8 @@
   "author": "Clement <clement@screeb.app> (https://github.com/clement-screeb)",
   "contributors": [
     "Marty <martin@screeb.app> (https://github.com/MD4)",
-    "Samuel <samuel@screeb.app> (https://github.com/samber)"
+    "Samuel <samuel@screeb.app> (https://github.com/samber)",
+    "Alexis <alexis@screeb.app> (https://github.com/alexays)"
   ],
   "license": "MIT",
   "bugs": {
