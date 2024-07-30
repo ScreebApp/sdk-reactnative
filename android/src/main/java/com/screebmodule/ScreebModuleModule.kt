@@ -187,8 +187,10 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun onHookResult(hookId: String, payload: ReadableMap?){
-    val result = payload?.toHashMap()["result"] as Any?
-    Screeb.onHookResult(hookId, result)
+    if (payload != null) {
+      val result = payload!!.toHashMap()["result"] as Any?
+      Screeb.onHookResult(hookId, result)
+    }
   }
 
   @ReactMethod
