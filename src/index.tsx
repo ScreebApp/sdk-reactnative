@@ -143,7 +143,8 @@ function handleEvent(event: any) {
     let hook = hooksRegistry.get(event.hookId);
     if (hook != null) {
       const result = hook(event.payload);
-      const originalHookId = event?.payload?.hook_id;
+      const parsedPayload = JSON.parse(event.payload);
+      const originalHookId = parsedPayload?.hook_id;
       if (originalHookId) {
         // result must be a map to fit with react native allowed types
         ScreebModule.onHookResult(originalHookId, { result });

@@ -23,7 +23,14 @@ class ScreebModule: RCTEventEmitter {
         if (hook.key == "version") {
           mapHooks![hook.key] = hook.value as? String
         } else {
-          mapHooks![hook.key] = {(payload:Any) -> () in self.sendEvent(withName: "ScreebEvent", body: ["hookId":hook.value,"payload":String(describing: payload)]) }
+          mapHooks![hook.key] = {(payload:Any) -> () in DispatchQueue.main.async {
+            guard let data = try? JSONEncoder().encode(self.toAnyEncodable(payload)) else {
+              return
+            }
+
+            let encoded = String(data: data, encoding: .utf8)!
+            self.sendEvent(withName: "ScreebEvent", body: ["hookId": hook.value, "payload": encoded])
+          }}
         }
       }
     }
@@ -90,7 +97,14 @@ class ScreebModule: RCTEventEmitter {
         if(hook.key == "version"){
             mapHooks![hook.key] = hook.value as? String
         } else {
-            mapHooks![hook.key] = {(payload:Any) -> () in self.sendEvent(withName: "ScreebEvent", body: ["hookId":hook.value,"payload":String(describing: payload)]) }
+            mapHooks![hook.key] = {(payload:Any) -> () in DispatchQueue.main.async {
+            guard let data = try? JSONEncoder().encode(self.toAnyEncodable(payload)) else {
+              return
+            }
+
+            let encoded = String(data: data, encoding: .utf8)!
+            self.sendEvent(withName: "ScreebEvent", body: ["hookId": hook.value, "payload": encoded])
+          }}
         }
       }
     }
@@ -140,7 +154,7 @@ class ScreebModule: RCTEventEmitter {
   @objc func onHookResult(_ hookId: String, payload: [String: Any]?) {
     DispatchQueue.main.async {
       if payload != nil {
-        let encoded = self.toAnyEncodable(payload["result"]
+        let encoded = self.toAnyEncodable(payload!["result"])
         Screeb.onHookResult(hookId, encoded)
       }
     }
