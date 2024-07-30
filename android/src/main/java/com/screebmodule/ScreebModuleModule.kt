@@ -51,9 +51,6 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       }
     }
 
-    // TODO: pass to pluginInit
-    var initOptions = InitOptions()
-
     Handler(Looper.getMainLooper()).post {
       Screeb.pluginInit(channelId, userId, map, mapHooks)
     }
@@ -189,7 +186,8 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun onHookResult(hookId: String, result: Any?){
+  fun onHookResult(hookId: String, payload: ReadableMap?){
+    val result = payload?.toHashMap()["result"] as Any?
     Screeb.onHookResult(hookId, result)
   }
 

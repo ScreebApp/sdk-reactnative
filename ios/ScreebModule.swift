@@ -137,10 +137,12 @@ class ScreebModule: RCTEventEmitter {
     }
   }
 
-  @objc func onHookResult(_ hookId: String, result: Any?) {
+  @objc func onHookResult(_ hookId: String, payload: [String: Any]?) {
     DispatchQueue.main.async {
-      let encoded = self.toAnyEncodable(result)
-      Screeb.onHookResult(hookId, encoded)
+      if payload != nil {
+        let encoded = self.toAnyEncodable(payload["result"]
+        Screeb.onHookResult(hookId, encoded)
+      }
     }
   }
 

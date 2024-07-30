@@ -11,6 +11,7 @@ RCT_EXTERN_METHOD(unassignGroup:(NSString *)type name:(NSString *)name_ properti
 RCT_EXTERN_METHOD(trackEvent:(NSString *)eventId properties:(NSDictionary<NSString *, id> *)properties_)
 RCT_EXTERN_METHOD(trackScreen:(NSString *)screen properties:(NSDictionary<NSString *, id> *)properties_)
 RCT_EXTERN_METHOD(startSurvey:(NSString *)surveyId allowMultipleResponses:(BOOL)allowMultipleResponses_ hiddenFields:(NSDictionary<NSString *, id> *)hiddenFields_ ignoreSurveyStatus:(BOOL)ignoreSurveyStatus_ hooks:(NSDictionary<NSString *, id> *)hooks_)
+RCT_EXTERN_METHOD(onHookResult:(NSString *)hookId payload:(NSDictionary<NSString *, id> *)payload_)
 RCT_EXTERN_METHOD(debug)
 RCT_EXTERN_METHOD(debugTargeting)
 RCT_EXTERN_METHOD(closeSdk)
