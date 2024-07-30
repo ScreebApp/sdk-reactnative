@@ -1,16 +1,16 @@
 {
   "name": "@screeb/react-native",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Continuous Product Discovery",
   "scripts": {
     "clean": "rm -rf lib/",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "build": "npm run clean ; tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json"
   },
-  "react-native": "src/index",
+  "react-native": "src/index.tsx",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "source": "src/index",
+  "source": "src/index.tsx",
   "keywords": [
     "react-native",
     "ios",

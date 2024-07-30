@@ -44,8 +44,7 @@ export function initSdk(
       if (key == "version") {
         mapHooksId = { ...mapHooksId, version: hooks[key] };
       } else {
-        // Random id
-        let uuid = Date.now().toString() + Math.random().toString();
+        let uuid = Date.now().toString() + Math.random().toString() + key;
         hooksRegistry.set(uuid, hooks[key]);
         mapHooksId = { ...mapHooksId, [key]: uuid };
       }
@@ -109,8 +108,7 @@ export function startSurvey(
       if (key == "version") {
         mapHooksId = { ...mapHooksId, version: hooks[key] };
       } else {
-        // Random id
-        let uuid = Date.now().toString() + Math.random().toString();
+        let uuid = Date.now().toString() + Math.random().toString() + key;
         hooksRegistry.set(uuid, hooks[key]);
         mapHooksId = { ...mapHooksId, [key]: uuid };
       }
@@ -141,10 +139,17 @@ export function closeSurvey() {
 }
 
 function handleEvent(event: any) {
+  console.log(event);
   if (event?.hookId != null) {
     let hook = hooksRegistry.get(event.hookId);
     if (hook != null) {
-      hook(event.payload);
+      const result = hook(event.payload);
+      console.log("Hook result: ", result);
+      console.log(event.payload);
+      const originalHookId = event?.payload?.hook_id;
+      if (originalHookId) {
+        ScreebModule.onHookResult(originalHookId, result);
+      }
     }
   }
 }

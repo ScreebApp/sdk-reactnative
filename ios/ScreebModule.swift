@@ -11,7 +11,7 @@ class ScreebModule: RCTEventEmitter {
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
       initOptions initOptions_: [String: Any]?) {
-    Screeb.setSecondarySDK(name: "react-native", version: "2.1.0")
+    Screeb.setSecondarySDK(name: "react-native", version: "2.1.1")
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
         map = self.mapToAnyEncodable(map: properties_!)
@@ -119,18 +119,6 @@ class ScreebModule: RCTEventEmitter {
     }
   }
 
-  @objc func debug(){
-    DispatchQueue.main.async {
-      Screeb.debug()
-    }
-  }
-
-  @objc func debugTargeting(){
-    DispatchQueue.main.async {
-      Screeb.debugTargeting()
-    }
-  }
-
   @objc func resetIdentity(){
     DispatchQueue.main.async {
       Screeb.resetIdentity()
@@ -149,30 +137,53 @@ class ScreebModule: RCTEventEmitter {
     }
   }
 
-  private func mapToAnyEncodable(map: [String: Any?]?) -> [String: AnyEncodable?] {
-      var anyEncodableMap: [String: AnyEncodable?] = [:]
-      map?.forEach { key, value in
-        if let nsValue = value as? NSNumber {
-            if CFBooleanGetTypeID() == CFGetTypeID(nsValue) {
-                anyEncodableMap[key] = AnyEncodable(nsValue.boolValue)
-            } else if let value = value as? Int {
-                anyEncodableMap[key] = AnyEncodable(value)
-            } else if let value = value as? Double {
-                anyEncodableMap[key] = AnyEncodable(value)
-            } else if let value = value as? Float {
-                anyEncodableMap[key] = AnyEncodable(value)
-            } else {
-                anyEncodableMap[key] = nil
-            }
-        } else if let value = value as? String {
-            anyEncodableMap[key] = AnyEncodable(value)
-        } else if let value = value as? [String: Any?] {
-            anyEncodableMap[key] = AnyEncodable(self.mapToAnyEncodable(map: value))
+  @objc func onHookResult(_ hookId: String, result: Any?) {
+    DispatchQueue.main.async {
+      let encoded = self.toAnyEncodable(result)
+      Screeb.onHookResult(hookId, encoded)
+    }
+  }
+
+  @objc func debug(){
+    DispatchQueue.main.async {
+      Screeb.debug()
+    }
+  }
+
+  @objc func debugTargeting(){
+    DispatchQueue.main.async {
+      Screeb.debugTargeting()
+    }
+  }
+
+  private func toAnyEncodable(_ value: Any?) -> AnyEncodable? {
+    if let nsValue = value as? NSNumber {
+        if CFBooleanGetTypeID() == CFGetTypeID(nsValue) {
+            return AnyEncodable(nsValue.boolValue)
+        } else if let value = value as? Int {
+            return AnyEncodable(value)
+        } else if let value = value as? Double {
+            return AnyEncodable(value)
+        } else if let value = value as? Float {
+            return AnyEncodable(value)
         } else {
-            anyEncodableMap[key] = nil
+            return nil
         }
-      }
-      return anyEncodableMap
+    } else if let value = value as? String {
+        return AnyEncodable(value)
+    } else if let value = value as? [String: Any?] {
+        return AnyEncodable(self.mapToAnyEncodable(map: value))
+    } else {
+        return nil
+    }
+  }
+
+  private func mapToAnyEncodable(map: [String: Any?]?) -> [String: AnyEncodable?] {
+    var anyEncodableMap: [String: AnyEncodable?] = [:]
+    map?.forEach { key, value in
+        anyEncodableMap[key] = self.toAnyEncodable(value)
+    }
+    return anyEncodableMap
   }
 
   override func supportedEvents() -> [String]! {

@@ -28,7 +28,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
-    Screeb.setSecondarySDK("react-native", "2.1.0")
+    Screeb.setSecondarySDK("react-native", "2.1.1")
     var map: HashMap<String, Any?>? = null
     if (properties != null) {
       map = properties.toHashMap()
@@ -165,20 +165,6 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun debug(){
-    Log.d("ScreebModule","Called debug")
-    Screeb.debug()
-  }
-
-  @ReactMethod
-  fun debugTargeting(){
-    Log.d("ScreebModule","Called debugTargeting")
-    Handler(Looper.getMainLooper()).post {
-      Screeb.debugTargeting()
-    }
-  }
-
-  @ReactMethod
   fun resetIdentity(){
     Log.d("ScreebModule","Called resetIdentity")
     Handler(Looper.getMainLooper()).post {
@@ -199,6 +185,25 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     Log.d("ScreebModule","Called closeSurvey")
     Handler(Looper.getMainLooper()).post {
       Screeb.closeSurvey()
+    }
+  }
+
+  @ReactMethod
+  fun onHookResult(hookId: String, result: Any?){
+    Screeb.onHookResult(hookId, result)
+  }
+
+  @ReactMethod
+  fun debug(){
+    Log.d("ScreebModule","Called debug")
+    Screeb.debug()
+  }
+
+  @ReactMethod
+  fun debugTargeting(){
+    Log.d("ScreebModule","Called debugTargeting")
+    Handler(Looper.getMainLooper()).post {
+      Screeb.debugTargeting()
     }
   }
 }
