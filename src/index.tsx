@@ -147,7 +147,18 @@ function handleEvent(event: any) {
       const originalHookId = parsedPayload?.hook_id;
       if (originalHookId) {
         // result must be a map to fit with react native allowed types
-        ScreebModule.onHookResult(originalHookId, { result });
+        // Check if hook is a promise/async function
+        if (result instanceof Promise) {
+          result
+            .then((result) => {
+              ScreebModule.onHookResult(originalHookId, { result });
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        } else {
+          ScreebModule.onHookResult(originalHookId, { result });
+        }
       }
     }
   }
