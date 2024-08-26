@@ -4,6 +4,7 @@ import {
   NativeModules,
   Platform,
 } from "react-native";
+import { Hooks, HooksEvent } from "./types";
 
 const LINKING_ERROR =
   `The package '@screeb/react-native' doesn't seem to be linked. Make sure: \n\n` +
@@ -22,30 +23,32 @@ const ScreebModule = NativeModules.ScreebModule
       }
     );
 
-let hooksRegistry = new Map<string, any>();
+let hooksRegistry: Map<string, any> = new Map<string, any>();
 
 export function initSdk(
   androidChannelId: string,
   iosChannelId: string,
   userId?: string,
-  properties?: Map<string, any>,
-  hooks?: any,
+  properties?: Record<string, any>,
+  hooks?: Hooks,
   isDebugMode?: boolean
-) {
+): void {
   const emitter =
     Platform.OS === "ios"
       ? new NativeEventEmitter(NativeModules.ScreebModule)
       : DeviceEventEmitter;
   emitter.addListener("ScreebEvent", handleEvent);
   let mapHooksId: any = undefined;
-  if (hooks != null) {
+  if (hooks) {
     mapHooksId = new Object();
+
     Object.keys(hooks).map((key) => {
       if (key == "version") {
-        mapHooksId = { ...mapHooksId, version: hooks[key] };
+        mapHooksId = { ...mapHooksId, version: hooks["version"] };
       } else {
         let uuid = Date.now().toString() + Math.random().toString() + key;
-        hooksRegistry.set(uuid, hooks[key]);
+
+        hooksRegistry.set(uuid, hooks[key as HooksEvent]);
         mapHooksId = { ...mapHooksId, [key]: uuid };
       }
     });
@@ -68,39 +71,49 @@ export function initSdk(
     );
   }
 }
-export function setIdentity(userId: string, properties?: Map<string, any>) {
+
+export function setIdentity(
+  userId: string,
+  properties?: Record<string, any>
+): void {
   return ScreebModule.setIdentity(userId, properties);
 }
-export function setProperties(properties?: Map<string, any>) {
+export function setProperties(properties?: Record<string, any>): void {
   return ScreebModule.setProperties(properties);
 }
 export function assignGroup(
   type: string | null,
   name: string,
-  properties?: Map<string, any>
-) {
+  properties?: Record<string, any>
+): void {
   return ScreebModule.assignGroup(type, name, properties);
 }
 export function unassignGroup(
   type: string | null,
   name: string,
-  properties?: Map<string, any>
-) {
+  properties?: Record<string, any>
+): void {
   return ScreebModule.unassignGroup(type, name, properties);
 }
-export function trackEvent(name: string, properties?: Map<string, any>) {
+export function trackEvent(
+  name: string,
+  properties?: Record<string, any>
+): void {
   return ScreebModule.trackEvent(name, properties);
 }
-export function trackScreen(name: string, properties?: Map<string, any>) {
+export function trackScreen(
+  name: string,
+  properties?: Record<string, any>
+): void {
   return ScreebModule.trackScreen(name, properties);
 }
 export function startSurvey(
   surveyId: string,
   allowMultipleResponses?: boolean,
-  hiddenFields?: Map<string, any>,
+  hiddenFields?: Record<string, any>,
   ignoreSurveyStatus?: boolean,
-  hooks?: any
-) {
+  hooks?: Hooks
+): void {
   let mapHooksId: any = undefined;
   if (hooks != undefined) {
     mapHooksId = new Object();
@@ -109,7 +122,7 @@ export function startSurvey(
         mapHooksId = { ...mapHooksId, version: hooks[key] };
       } else {
         let uuid = Date.now().toString() + Math.random().toString() + key;
-        hooksRegistry.set(uuid, hooks[key]);
+        hooksRegistry.set(uuid, hooks[key as HooksEvent]);
         mapHooksId = { ...mapHooksId, [key]: uuid };
       }
     });
@@ -122,23 +135,23 @@ export function startSurvey(
     mapHooksId
   );
 }
-export function debug() {
+export function debug(): void {
   return ScreebModule.debug();
 }
-export function debugTargeting() {
+export function debugTargeting(): void {
   return ScreebModule.debugTargeting();
 }
-export function resetIdentity() {
+export function resetIdentity(): void {
   return ScreebModule.resetIdentity();
 }
-export function closeSdk() {
+export function closeSdk(): void {
   return ScreebModule.closeSdk();
 }
-export function closeSurvey() {
+export function closeSurvey(): void {
   return ScreebModule.closeSurvey();
 }
 
-function handleEvent(event: any) {
+function handleEvent(event: any): void {
   if (event?.hookId != null) {
     let hook = hooksRegistry.get(event.hookId);
     if (hook != null) {
