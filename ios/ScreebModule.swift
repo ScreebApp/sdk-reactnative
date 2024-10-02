@@ -11,7 +11,7 @@ class ScreebModule: RCTEventEmitter {
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
       initOptions initOptions_: [String: Any]?,
-      language language_: String?,
+      language language_: String?
     ) {
     Screeb.setSecondarySDK(name: "react-native", version: "2.1.5")
     var map: [String: AnyEncodable?] = [:]
