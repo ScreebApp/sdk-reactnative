@@ -26,7 +26,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?) {
+  fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?, language: String?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
     Screeb.setSecondarySDK("react-native", "2.1.5")
     var map: HashMap<String, Any?>? = null
@@ -52,7 +52,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     }
 
     Handler(Looper.getMainLooper()).post {
-      Screeb.pluginInit(channelId, userId, map, mapHooks)
+      Screeb.pluginInit(channelId, userId, map, mapHooks, language)
     }
   }
 
@@ -133,7 +133,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true, hooks: ReadableMap? = null) {
+  fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true, hooks: ReadableMap? = null, language: String? = null) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
     var map: HashMap<String, Any>? = null
     if (hiddenFields != null) {
@@ -157,7 +157,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       }
     }
     Handler(Looper.getMainLooper()).post {
-      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks)
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks, language)
     }
   }
 
