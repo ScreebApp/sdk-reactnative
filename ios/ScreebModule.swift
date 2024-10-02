@@ -4,13 +4,15 @@ import Foundation
 
 @objc(ScreebModule)
 class ScreebModule: RCTEventEmitter {
-  @objc(initSdk:userId:properties:hooks:initOptions:)
+  @objc(initSdk:userId:properties:hooks:initOptions:language:)
   func initSdk(
       _ channelId: String,
       userId userId_: String?,
       properties properties_: [String: Any]?,
       hooks hooks_: [String: Any]?,
-      initOptions initOptions_: [String: Any]?) {
+      initOptions initOptions_: [String: Any]?,
+      language language_: String?,
+    ) {
     Screeb.setSecondarySDK(name: "react-native", version: "2.1.5")
     var map: [String: AnyEncodable?] = [:]
     if (properties_ != nil) {
@@ -43,7 +45,7 @@ class ScreebModule: RCTEventEmitter {
     }
 
     DispatchQueue.main.async {
-      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: map, initOptions: initOptions, hooks: mapHooks)
+      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: map, initOptions: initOptions, hooks: mapHooks, language: language_)
     }
   }
 
@@ -85,7 +87,7 @@ class ScreebModule: RCTEventEmitter {
     }
   }
 
-  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?,ignoreSurveyStatus ignoreSurveyStatus_: Bool, hooks hooks_: [String: Any]?) {
+  @objc func startSurvey(_ surveyId: String, allowMultipleResponses allowMultipleResponses_: Bool, hiddenFields hiddenFields_: [String: Any]?,ignoreSurveyStatus ignoreSurveyStatus_: Bool, hooks hooks_: [String: Any]?, language language_: String?) {
     var map: [String: AnyEncodable] = [:]
     if (hiddenFields_ != nil) {
         map = self.mapToAnyEncodable(map: hiddenFields_!).filter({ $0.value != nil }).mapValues({ $0! })
@@ -109,7 +111,7 @@ class ScreebModule: RCTEventEmitter {
       }
     }
     DispatchQueue.main.async {
-      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_, hooks: mapHooks)
+      Screeb.startSurvey(surveyId: surveyId, allowMultipleResponses: allowMultipleResponses_, hiddenFields: map, ignoreSurveyStatus: ignoreSurveyStatus_, hooks: mapHooks, language: language_)
     }
   }
 

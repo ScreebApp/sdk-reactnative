@@ -30,7 +30,8 @@ export function initSdk(
   userId?: string,
   properties?: Map<string, any>,
   hooks?: any,
-  isDebugMode?: boolean
+  isDebugMode?: boolean,
+  language?: string
 ) {
   const emitter =
     Platform.OS === "ios"
@@ -56,7 +57,8 @@ export function initSdk(
       userId,
       properties,
       mapHooksId,
-      isDebugMode
+      isDebugMode,
+      language
     );
   } else {
     return ScreebModule.initSdk(
@@ -64,7 +66,8 @@ export function initSdk(
       userId,
       properties,
       mapHooksId,
-      isDebugMode
+      isDebugMode,
+      language
     );
   }
 }
@@ -99,7 +102,8 @@ export function startSurvey(
   allowMultipleResponses?: boolean,
   hiddenFields?: Map<string, any>,
   ignoreSurveyStatus?: boolean,
-  hooks?: any
+  hooks?: any,
+  language?: string
 ) {
   let mapHooksId: any = undefined;
   if (hooks != undefined) {
@@ -119,7 +123,8 @@ export function startSurvey(
     allowMultipleResponses ?? true,
     hiddenFields,
     ignoreSurveyStatus ?? true,
-    mapHooksId
+    mapHooksId,
+    language
   );
 }
 export function debug() {
