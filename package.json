@@ -1,6 +1,6 @@
 {
   "name": "@screeb/react-native",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Continuous Product Discovery",
   "scripts": {
     "clean": "rm -rf lib/",
