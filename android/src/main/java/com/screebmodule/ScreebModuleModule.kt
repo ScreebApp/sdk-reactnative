@@ -28,7 +28,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?, language: String?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
-    Screeb.setSecondarySDK("react-native", "2.1.10")
+    Screeb.setSecondarySDK("react-native", "2.1.11")
     var map: HashMap<String, Any?>? = null
     if (properties != null) {
       map = properties.toHashMap()
@@ -135,7 +135,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true, hooks: ReadableMap? = null, language: String? = null) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
-    var map: HashMap<String, Any>? = null
+    var map: HashMap<String, Any?>? = null
     if (hiddenFields != null) {
       map = hiddenFields.toHashMap()
     }
