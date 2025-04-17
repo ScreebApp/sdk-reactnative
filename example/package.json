@@ -1,23 +1,40 @@
 {
-  "name": "screeb-module-example",
-  "description": "Example app for @screeb/react-native",
-  "version": "1.0.0",
-  "main": "expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web"
-  },
-  "dependencies": {
-    "expo": "~51.0.23",
-    "expo-status-bar": "~1.12.1",
-    "react": "18.2.0",
-    "react-native": "0.75.0",
-    "@screeb/react-native": "2.1.4"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
-  },
-  "private": true
+	"name": "example",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"android": "react-native run-android",
+		"ios": "react-native run-ios",
+		"lint": "eslint .",
+		"start": "react-native start",
+		"test": "jest"
+	},
+	"dependencies": {
+		"react": "19.0.0",
+		"react-native": "0.79.1",
+		"@screeb/react-native": "2.1.16"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.25.2",
+		"@babel/preset-env": "^7.25.3",
+		"@babel/runtime": "^7.25.0",
+		"@react-native-community/cli": "18.0.0",
+		"@react-native-community/cli-platform-android": "18.0.0",
+		"@react-native-community/cli-platform-ios": "18.0.0",
+		"@react-native/babel-preset": "0.79.1",
+		"@react-native/eslint-config": "0.79.1",
+		"@react-native/metro-config": "0.79.1",
+		"@react-native/typescript-config": "0.79.1",
+		"@types/jest": "^29.5.13",
+		"@types/react": "^19.0.0",
+		"@types/react-test-renderer": "^19.0.0",
+		"eslint": "^8.19.0",
+		"jest": "^29.6.3",
+		"prettier": "2.8.8",
+		"react-test-renderer": "19.0.0",
+		"typescript": "5.0.4"
+	},
+	"engines": {
+		"node": ">=18"
+	}
 }
