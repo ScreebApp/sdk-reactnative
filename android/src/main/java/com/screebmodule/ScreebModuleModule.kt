@@ -28,7 +28,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?, language: String?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
-    Screeb.setSecondarySDK("react-native", "2.1.15")
+    Screeb.setSecondarySDK("react-native", "2.1.16")
     var mapHooks:HashMap<String, Any>? = null
     if (hooks != null) {
       mapHooks = hashMapOf<String, Any>()
@@ -62,9 +62,14 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun setProperties(properties: ReadableMap?) {
+    if (properties == null) {
+      Log.d("ScreebModule", "Called setProperties with null properties")
+      return
+    }
+
     Log.d("ScreebModule", "Called setProperties")
     Handler(Looper.getMainLooper()).post {
-      Screeb.setVisitorProperties(this.fromReadableMap(properties))
+      Screeb.setVisitorProperties(this.fromReadableMap(properties)!!)
     }
   }
 
