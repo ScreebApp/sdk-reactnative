@@ -29,10 +29,6 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?, language: String?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
     Screeb.setSecondarySDK("react-native", "2.1.12")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
     var mapHooks:HashMap<String, Any>? = null
     if (hooks != null) {
       mapHooks = hashMapOf<String, Any>()
@@ -52,93 +48,61 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     }
 
     Handler(Looper.getMainLooper()).post {
-      Screeb.pluginInit(channelId, userId, map, mapHooks, language)
+      Screeb.pluginInit(channelId, userId, fromReadableMap(properties), mapHooks, language)
     }
   }
 
   @ReactMethod
   fun setIdentity(userId: String, properties: ReadableMap?) {
     Log.d("ScreebModule", "Called setIdentity : $userId")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
-
     Handler(Looper.getMainLooper()).post {
-      Screeb.setIdentity(userId, map)
+      Screeb.setIdentity(userId, fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun setProperties(properties: ReadableMap) {
-    Log.d(
-      "ScreebModule",
-      "Called setVisitorProperties with " + properties.toHashMap().size + " properties"
-    )
-
+    Log.d("ScreebModule", "Called setProperties")
     Handler(Looper.getMainLooper()).post {
-      Screeb.setVisitorProperties(properties.toHashMap())
+      Screeb.setVisitorProperties(fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun assignGroup(type: String? = null, name: String, properties: ReadableMap? = null) {
     Log.d("ScreebModule", "Called assignGroup : $name")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
-
     Handler(Looper.getMainLooper()).post {
-      Screeb.assignGroup(type, name, map)
+      Screeb.assignGroup(type, name, fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun unassignGroup(type: String? = null, name: String, properties: ReadableMap? = null) {
     Log.d("ScreebModule", "Called unassignGroup : $name")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
-
     Handler(Looper.getMainLooper()).post {
-      Screeb.unassignGroup(type, name, map)
+      Screeb.unassignGroup(type, name, fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun trackEvent(eventId: String, properties: ReadableMap?) {
     Log.d("ScreebModule", "Called trackEvent : $eventId")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
-
     Handler(Looper.getMainLooper()).post {
-      Screeb.trackEvent(eventId, map)
+      Screeb.trackEvent(eventId, fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun trackScreen(screen: String, properties: ReadableMap?) {
     Log.d("ScreebModule", "Called trackScreen : $screen")
-    var map: HashMap<String, Any?>? = null
-    if (properties != null) {
-      map = properties.toHashMap()
-    }
     Handler(Looper.getMainLooper()).post {
-      Screeb.trackScreen(screen, map)
+      Screeb.trackScreen(screen, fromReadableMap(properties))
     }
   }
 
   @ReactMethod
   fun startSurvey(surveyId: String, allowMultipleResponses: Boolean? = true, hiddenFields: ReadableMap? = null, ignoreSurveyStatus: Boolean? = true, hooks: ReadableMap? = null, language: String? = null) {
     Log.e("ScreebModule", "Called startSurvey : $surveyId")
-    var map: HashMap<String, Any?>? = null
-    if (hiddenFields != null) {
-      map = hiddenFields.toHashMap()
-    }
     var mapHooks:HashMap<String, Any>? = null
     if (hooks != null) {
       mapHooks = hashMapOf<String, Any>()
@@ -157,7 +121,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
       }
     }
     Handler(Looper.getMainLooper()).post {
-      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, map, ignoreSurveyStatus ?: true, mapHooks, language)
+      Screeb.startSurvey(surveyId, allowMultipleResponses ?: true, fromReadableMap(hiddenFields), ignoreSurveyStatus ?: true, mapHooks, language)
     }
   }
 
@@ -188,7 +152,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun onHookResult(hookId: String, payload: ReadableMap?){
     if (payload != null) {
-      val result = payload!!.toHashMap()["result"] as Any?
+      val result = fromReadableMap(payload!!)!!["result"] as Any?
       Screeb.onHookResult(hookId, result)
     }
   }
@@ -205,5 +169,22 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
     Handler(Looper.getMainLooper()).post {
       Screeb.debugTargeting()
     }
+  }
+
+  private fun fromReadableMap(readableMap: ReadableMap?): HashMap<String, Any?>? {
+    if (readableMap == null) {
+      return null
+    }
+    val map = HashMap<String, Any?>()
+    val keys = readableMap.keySetIterator()
+    while (keys.hasNextKey()) {
+      val key = keys.nextKey()
+      when (val value = readableMap.getValue(key)) {
+        is ReadableMap -> map[key] = fromReadableMap(value)
+        is ReadableArray -> map[key] = fromReadableArray(value)
+        else -> map[key] = value
+      }
+    }
+    return map
   }
 }
