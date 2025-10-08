@@ -1,6 +1,6 @@
 {
 	"name": "@screeb/react-native",
-	"version": "2.1.16",
+	"version": "2.1.17",
 	"description": "Continuous Product Discovery",
 	"scripts": {
 		"clean": "rm -rf lib/",
@@ -11,7 +11,13 @@
 	"main": "lib/commonjs/index.js",
 	"module": "lib/module/index.js",
 	"source": "src/index.tsx",
-	"keywords": ["react-native", "ios", "android", "screeb", "survey"],
+	"keywords": [
+		"react-native",
+		"ios",
+		"android",
+		"screeb",
+		"survey"
+	],
 	"files": [
 		"src",
 		"lib",
