@@ -28,7 +28,7 @@ class ScreebModuleModule(reactContext: ReactApplicationContext) :
   @ReactMethod
   fun initSdk(channelId: String, userId: String?, properties: ReadableMap?, hooks: ReadableMap?, initOptions: ReadableMap?, language: String?) {
     Log.d("ScreebModule", "Called initSdk : $userId")
-    Screeb.setSecondarySDK("react-native", "2.1.17")
+    Screeb.setSecondarySDK("react-native", "2.1.18")
     var mapHooks:HashMap<String, Any>? = null
     if (hooks != null) {
       mapHooks = hashMapOf<String, Any>()

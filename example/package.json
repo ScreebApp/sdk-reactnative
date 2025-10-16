@@ -10,9 +10,9 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"@screeb/react-native": "file:..",
 		"react": "19.0.0",
-		"react-native": "0.79.1",
-		"@screeb/react-native": "2.1.16"
+		"react-native": "0.79.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.25.2",
