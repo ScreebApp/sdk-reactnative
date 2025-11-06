@@ -1,61 +1,155 @@
 {
-	"name": "@screeb/react-native",
-	"version": "2.1.18",
-	"description": "Continuous Product Discovery",
-	"scripts": {
-		"clean": "rm -rf lib/",
-		"lint": "eslint \"**/*.{js,ts,tsx}\"",
-		"build": "npm run clean ; tsc -p tsconfig.build.json && tsc -p tsconfig.build.cjs.json"
-	},
-	"react-native": "src/index.tsx",
-	"main": "lib/commonjs/index.js",
-	"module": "lib/module/index.js",
-	"source": "src/index.tsx",
-	"keywords": [
-		"react-native",
-		"ios",
-		"android",
-		"screeb",
-		"survey"
-	],
-	"files": [
-		"src",
-		"lib",
-		"android",
-		"ios",
-		"cpp",
-		"screeb-module.podspec",
-		"!lib/typescript/example",
-		"!android/build",
-		"!ios/build",
-		"!**/__tests__",
-		"!**/__fixtures__",
-		"!**/__mocks__"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ScreebApp/sdk-reactnative.git"
-	},
-	"author": "Clement <clement@screeb.app> (https://github.com/clement-screeb)",
-	"contributors": [
-		"Marty <martin@screeb.app> (https://github.com/MD4)",
-		"Samuel <samuel@screeb.app> (https://github.com/samber)",
-		"Alexis <alexis@screeb.app> (https://github.com/alexays)"
-	],
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ScreebApp/sdk-reactnative/issues"
-	},
-	"homepage": "https://github.com/ScreebApp/sdk-reactnative#readme",
-	"publishConfig": {
-		"registry": "https://registry.npmjs.org/"
-	},
-	"peerDependencies": {
-		"react": "*",
-		"react-native": "*"
-	},
-	"types": "./lib/typescript/index.d.ts",
-	"devDependencies": {
-		"typescript": "^5.1.6"
-	}
+  "name": "@screeb/react-native",
+  "version": "2.2.0",
+  "description": "Continuous Product Discovery",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "react-native.config.js",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "example": "yarn workspace screeb-react-native-example",
+    "example:expo": "yarn workspace example-expo start",
+    "typecheck": "tsc",
+    "lint": "eslint . --ext .js,.ts,.tsx --ignore-pattern example/** --ignore-pattern example-expo/**",
+    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "prepare": "bob build",
+    "release": "release-it --only-version"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScreebApp/sdk-reactnative.git"
+  },
+  "author": "Alexis <alexis@screeb.app> (https://github.com/Alexays)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ScreebApp/sdk-reactnative/issues"
+  },
+  "homepage": "https://github.com/ScreebApp/sdk-reactnative#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/compat": "^1.3.2",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.35.0",
+    "@react-native-community/cli": "20.0.1",
+    "@react-native/babel-preset": "0.81.1",
+    "@react-native/eslint-config": "^0.81.1",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@types/react": "^19.1.0",
+    "commitlint": "^19.8.1",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "react": "19.1.0",
+    "react-native": "0.81.1",
+    "react-native-builder-bob": "^0.40.13",
+    "release-it": "^19.0.4",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "workspaces": [
+    "example",
+    "example-expo"
+  ],
+  "packageManager": "yarn@3.6.1",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "angular"
+        }
+      }
+    }
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "ScreebReactNativeSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "app.screeb.reactnative"
+    }
+  },
+  "create-react-native-library": {
+    "languages": "kotlin-objc",
+    "type": "turbo-module",
+    "version": "0.54.8"
+  }
 }

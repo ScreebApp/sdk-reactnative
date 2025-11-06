@@ -17,20 +17,39 @@ A react-native module to integrate Screeb mobile sdk for Android and/or iOS.
 
 [See here.](https://www.notion.so/screeb/ReactNative-SDK-30e8dc27fa7a4dea979084d83e5140c3)
 
-## Run example
+## Run examples
+
+### React Native CLI example
 
 ```sh
-npm install
+yarn install
 
 cd example/
-npm install
+yarn install
 
 cd ios/
 pod install
+cd ..
 
-npm run android
-npm run ios
+yarn android
+yarn ios
 ```
+
+### Expo example
+
+The Expo project lives in `example-expo`. It builds a full native binary (Expo Go will not load custom native modules).
+
+```sh
+yarn install
+
+yarn workspace example-expo prebuild
+yarn workspace example-expo ios   # or android
+
+# in another terminal, from the repo root
+yarn example:expo
+```
+
+Re-run `prebuild` whenever native configuration changes (for example after toggling the new architecture). Use `yarn workspace example-expo prebuild --clean` if you need to fully regenerate the iOS/Android projects. The `example-expo/react-native.config.js` file ensures the Screeb module is autolinked automatically.
 
 ## License
 
