@@ -241,11 +241,15 @@ const hooksRegistry = new Map<
 	(payload: string) => unknown | Promise<unknown>
 >();
 
-function handleEvent(event: { hookId?: string; payload?: string }) {
+function handleEvent(event: { hookId?: string; payload?: unknown }) {
 	if (event?.hookId != null) {
 		const hook = hooksRegistry.get(event.hookId);
 		if (hook != null) {
-			const payload = event.payload ?? "{}";
+			const payload = event.payload
+				? typeof event.payload !== "string"
+					? JSON.stringify(event.payload)
+					: event.payload
+				: "{}";
 			const result = hook(payload);
 			const parsedPayload = JSON.parse(payload);
 			const originalHookId = parsedPayload?.hook_id;

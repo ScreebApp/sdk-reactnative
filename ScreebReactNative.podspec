@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,cpp,swift}"
   s.private_header_files = "ios/**/*.h"
 
-  s.dependency "Screeb", '~> 2.2.0'
+  s.dependency "Screeb", '~> 2.2.1'
   s.dependency "React-Core"
   install_modules_dependencies(s)
 end

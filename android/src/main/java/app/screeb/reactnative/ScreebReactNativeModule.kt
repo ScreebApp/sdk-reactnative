@@ -27,7 +27,7 @@ class ScreebReactNativeModule(reactContext: ReactApplicationContext) :
     language: String?,
     promise: Promise
   ) {
-    Screeb.setSecondarySDK("react-native", "2.2.0")
+    Screeb.setSecondarySDK("react-native", "2.2.1")
 
     val mapHooks: HashMap<String, Any>? = hooks?.let { readable ->
       hashMapOf<String, Any>().apply {
