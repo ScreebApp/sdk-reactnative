@@ -26,7 +26,7 @@ class ScreebReactNative: RCTEventEmitter {
       initOptions initOptions_: [String: Any]?,
       language language_: String?
     ) {
-    Screeb.setSecondarySDK(name: "react-native", version: "2.2.1")
+    Screeb.setSecondarySDK(name: "react-native", version: "3.0.0")
     var mapHooks: [String: Any]? = nil
     if (hooks_ != nil) {
       mapHooks = [:]
@@ -43,15 +43,10 @@ class ScreebReactNative: RCTEventEmitter {
       }
     }
 
-    var initOptions = InitOptions()
-    initOptions_?.forEach{ option in
-      if (option.key == "isDebugMode") {
-        initOptions = InitOptions(isDebugMode: option.value as? Bool)
-      }
-    }
-
+    let initOptionsDict: NSDictionary = NSDictionary(dictionary: (initOptions_ ?? [:]).compactMapValues { $0 })
+    let initOptionsFinal = InitOptions(dict: initOptionsDict)
     DispatchQueue.main.async {
-      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: properties_ ?? [:], initOptions: initOptions, hooks: mapHooks, language: language_)
+      Screeb.initSdk(context: nil, channelId: channelId, identity: userId_, visitorProperty: properties_ ?? [:], initOptions: initOptionsFinal, hooks: mapHooks, language: language_)
     }
   }
 

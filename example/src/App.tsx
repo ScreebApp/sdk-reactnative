@@ -4,9 +4,8 @@ import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const initScreeb = async () => {
 	Screeb.initSdk(
-		"0e2b609a-8dce-4695-a80f-966fbfa87a88", // preview
-		"0021de43-6e44-443c-9903-2ab99f9c4233", // https://admin.screeb.app/org/73bd089b-61e3-49f4-86d5-08f1da50941d/people/respondent/f4776019-24d9-49aa-9e5d-a4a5a1d44ab1
-		// "react-native@screeb.app",
+		"de55cf0e-1cb6-4e2c-8bf5-ef4d72e63922", // preview
+		"react-native@screeb.app",
 		{
 			// 'isConnected': false,
 			// 'age': 29,
