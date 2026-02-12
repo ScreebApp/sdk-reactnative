@@ -27,7 +27,7 @@ class ScreebReactNativeModule(reactContext: ReactApplicationContext) :
     language: String?,
     promise: Promise
   ) {
-    Screeb.setSecondarySDK("react-native", "3.0.0")
+    Screeb.setSecondarySDK("react-native", "3.1.0")
 
     val mapHooks: HashMap<String, Any>? = hooks?.let { readable ->
       hashMapOf<String, Any>().apply {
@@ -202,14 +202,38 @@ class ScreebReactNativeModule(reactContext: ReactApplicationContext) :
 
   override fun debug(promise: Promise) {
     Handler(Looper.getMainLooper()).post {
-      Screeb.debug()
-      promise.resolve(null)
+      Screeb.debug { debugInfo, error ->
+        if (error != null) {
+          promise.reject("DEBUG_ERROR", error.message, error)
+        } else {
+          promise.resolve(debugInfo ?: "")
+        }
+      }
     }
   }
 
   override fun debugTargeting(promise: Promise) {
     Handler(Looper.getMainLooper()).post {
-      Screeb.debugTargeting()
+      Screeb.debugTargeting { debugInfo, error ->
+        if (error != null) {
+          promise.reject("DEBUG_TARGETING_ERROR", error.message, error)
+        } else {
+          promise.resolve(debugInfo ?: "")
+        }
+      }
+    }
+  }
+
+  override fun sessionReplayStart(promise: Promise) {
+    Handler(Looper.getMainLooper()).post {
+      Screeb.sessionReplayStart()
+      promise.resolve(null)
+    }
+  }
+
+  override fun sessionReplayStop(promise: Promise) {
+    Handler(Looper.getMainLooper()).post {
+      Screeb.sessionReplayStop()
       promise.resolve(null)
     }
   }
@@ -218,6 +242,18 @@ class ScreebReactNativeModule(reactContext: ReactApplicationContext) :
     Handler(Looper.getMainLooper()).post {
       Screeb.resetIdentity()
       promise.resolve(null)
+    }
+  }
+
+  override fun getIdentity(promise: Promise) {
+    Handler(Looper.getMainLooper()).post {
+      Screeb.getIdentity { identity, error ->
+        if (error != null) {
+          promise.reject("GET_IDENTITY_ERROR", error.message, error)
+        } else {
+          promise.resolve(identity)
+        }
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 import * as Screeb from "@screeb/react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const initScreeb = async () => {
@@ -7,6 +7,7 @@ const initScreeb = async () => {
 		"de55cf0e-1cb6-4e2c-8bf5-ef4d72e63922", // preview
 		"react-native@screeb.app",
 		{
+			logged_at_2: new Date(),
 			// 'isConnected': false,
 			// 'age': 29,
 			// 'product': 'iPhone 13',
@@ -27,9 +28,26 @@ const initScreeb = async () => {
 };
 
 export default function App() {
+	const [output, setOutput] = useState<string>("");
+
 	useEffect(() => {
 		initScreeb();
 	}, []);
+
+	const runDebug = async () => {
+		const result = await Screeb.debug();
+		setOutput(result);
+	};
+
+	const runDebugTargeting = async () => {
+		const result = await Screeb.debugTargeting();
+		setOutput(result);
+	};
+
+	const runGetIdentity = async () => {
+		const result = await Screeb.getIdentity();
+		setOutput(JSON.stringify(result, null, 2));
+	};
 
 	return (
 		<ScrollView>
@@ -123,12 +141,13 @@ export default function App() {
 					}
 				/>
 				<View style={styles.space} />
-				<Button title="debug" onPress={() => Screeb.debug()} />
+				<Button title="debug" onPress={runDebug} />
 				<View style={styles.space} />
-				<Button
-					title="debug targeting"
-					onPress={() => Screeb.debugTargeting()}
-				/>
+				<Button title="debug targeting" onPress={runDebugTargeting} />
+				<View style={styles.space} />
+				<Button title="get identity" onPress={runGetIdentity} />
+				<View style={styles.space} />
+				<Text style={styles.output}>{output}</Text>
 			</View>
 		</ScrollView>
 	);
@@ -159,5 +178,9 @@ const styles = StyleSheet.create({
 	space: {
 		width: 20,
 		height: 20,
+	},
+	output: {
+		width: "90%",
+		fontSize: 12,
 	},
 });

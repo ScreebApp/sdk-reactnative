@@ -45,11 +45,20 @@ RCT_EXTERN_METHOD(startMessage:(NSString *)messageId
                   language:(nullable NSString *)language
                   distributionId:(nullable NSString *)distributionId)
 
-RCT_EXTERN_METHOD(debug)
+RCT_EXTERN_METHOD(debug:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(debugTargeting)
+RCT_EXTERN_METHOD(debugTargeting:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(sessionReplayStart)
+
+RCT_EXTERN_METHOD(sessionReplayStop)
 
 RCT_EXTERN_METHOD(resetIdentity)
+
+RCT_EXTERN_METHOD(getIdentity:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(closeSdk)
 

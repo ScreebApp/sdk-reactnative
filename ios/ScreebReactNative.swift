@@ -26,7 +26,7 @@ class ScreebReactNative: RCTEventEmitter {
       initOptions initOptions_: [String: Any]?,
       language language_: String?
     ) {
-    Screeb.setSecondarySDK(name: "react-native", version: "3.0.0")
+    Screeb.setSecondarySDK(name: "react-native", version: "3.1.0")
     var mapHooks: [String: Any]? = nil
     if (hooks_ != nil) {
       mapHooks = [:]
@@ -125,7 +125,7 @@ class ScreebReactNative: RCTEventEmitter {
 
   @objc func unassignGroup(_ type: String?, name name_: String, properties properties_: [String: Any]?) {
     DispatchQueue.main.async {
-      Screeb.assignGroup(type: type, name: name_, properties: properties_ ?? [:])
+      Screeb.unassignGroup(type: type, name: name_, properties: properties_ ?? [:])
     }
   }
 
@@ -161,15 +161,54 @@ class ScreebReactNative: RCTEventEmitter {
     }
   }
 
-  @objc func debug(){
+  @objc func debug(_ resolve: @escaping RCTPromiseResolveBlock,
+                   reject: @escaping RCTPromiseRejectBlock) {
     DispatchQueue.main.async {
-      Screeb.debug()
+      Screeb.debug { debugInfo, error in
+        if let error = error {
+          reject("DEBUG_ERROR", error.localizedDescription, error)
+        } else {
+          resolve(debugInfo ?? "")
+        }
+      }
     }
   }
 
-  @objc func debugTargeting(){
+  @objc func debugTargeting(_ resolve: @escaping RCTPromiseResolveBlock,
+                            reject: @escaping RCTPromiseRejectBlock) {
     DispatchQueue.main.async {
-      Screeb.debugTargeting()
+      Screeb.debugTargeting { debugInfo, error in
+        if let error = error {
+          reject("DEBUG_TARGETING_ERROR", error.localizedDescription, error)
+        } else {
+          resolve(debugInfo ?? "")
+        }
+      }
+    }
+  }
+
+  @objc func sessionReplayStart(){
+    DispatchQueue.main.async {
+      Screeb.sessionReplayStart()
+    }
+  }
+
+  @objc func sessionReplayStop(){
+    DispatchQueue.main.async {
+      Screeb.sessionReplayStop()
+    }
+  }
+
+  @objc func getIdentity(_ resolve: @escaping RCTPromiseResolveBlock,
+                         reject: @escaping RCTPromiseRejectBlock) {
+    DispatchQueue.main.async {
+      Screeb.getIdentity { identity, error in
+        if let error = error {
+          reject("GET_IDENTITY_ERROR", error.localizedDescription, error)
+        } else {
+          resolve(identity)
+        }
+      }
     }
   }
 

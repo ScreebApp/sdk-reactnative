@@ -43,7 +43,7 @@ export function initSdk(
 	let mapHooksId: HookIdsMap | undefined;
 	if (hooks != null) {
 		mapHooksId = {};
-		Object.keys(hooks).map((key) => {
+		Object.keys(hooks).forEach((key) => {
 			if (key === "version") {
 				const v = hooks.version ?? undefined;
 				if (v)
@@ -133,7 +133,7 @@ export function startSurvey(
 	let mapHooksId: HookIdsMap | undefined;
 	if (hooks !== undefined) {
 		mapHooksId = {};
-		Object.keys(hooks).map((key) => {
+		Object.keys(hooks).forEach((key) => {
 			if (key === "version") {
 				const v = hooks.version ?? undefined;
 				if (v)
@@ -174,7 +174,7 @@ export function startMessage(
 	let mapHooksId: HookIdsMap | undefined;
 	if (hooks !== undefined) {
 		mapHooksId = {};
-		Object.keys(hooks).map((key) => {
+		Object.keys(hooks).forEach((key) => {
 			if (key === "version") {
 				const v = hooks.version ?? undefined;
 				if (v)
@@ -212,9 +212,24 @@ export function debugTargeting() {
 	return ScreebReactNative.debugTargeting();
 }
 
+// sessionReplayStart
+export function sessionReplayStart() {
+	return ScreebReactNative.sessionReplayStart();
+}
+
+// sessionReplayStop
+export function sessionReplayStop() {
+	return ScreebReactNative.sessionReplayStop();
+}
+
 // resetIdentity
 export function resetIdentity() {
 	return ScreebReactNative.resetIdentity();
+}
+
+// getIdentity
+export function getIdentity() {
+	return ScreebReactNative.getIdentity();
 }
 
 // closeSdk
@@ -275,7 +290,51 @@ function toObject(
 ): { [key: string]: unknown } | undefined {
 	if (value == null) return undefined;
 	if (value instanceof Map) {
-		return Object.fromEntries(value as Map<string, unknown>);
+		return normalizeValue(
+			Object.fromEntries(value as Map<string, unknown>),
+		) as {
+			[key: string]: unknown;
+		};
 	}
-	return value as { [key: string]: unknown };
+	return normalizeValue(value) as { [key: string]: unknown };
+}
+
+function normalizeValue(value: unknown): unknown {
+	if (value instanceof Date) {
+		return formatDateValue(value);
+	}
+
+	if (Array.isArray(value)) {
+		return value.map((item) => normalizeValue(item));
+	}
+
+	if (value instanceof Map) {
+		return normalizeValue(Object.fromEntries(value as Map<string, unknown>));
+	}
+
+	if (value != null && typeof value === "object") {
+		return Object.entries(value as Record<string, unknown>).reduce(
+			(acc, [key, nestedValue]) => {
+				acc[key] = normalizeValue(nestedValue);
+				return acc;
+			},
+			{} as Record<string, unknown>,
+		);
+	}
+
+	return value;
+}
+
+// Format payloads so DateTime properties are correctly interpreted by the SDK
+function formatDateValue(value: Date): string {
+	const timezoneOffsetHours = -value.getTimezoneOffset() / 60;
+	const sign = timezoneOffsetHours >= 0 ? "+" : "-";
+	const offset = Math.abs(timezoneOffsetHours).toString().padStart(2, "0");
+	const pad = (n: number, l = 2) => n.toString().padStart(l, "0");
+	const isoWithoutTimezone = `${value.getFullYear()}-${pad(
+		value.getMonth() + 1,
+	)}-${pad(value.getDate())}T${pad(value.getHours())}:${pad(
+		value.getMinutes(),
+	)}:${pad(value.getSeconds())}.${pad(value.getMilliseconds(), 3)}`;
+	return `${isoWithoutTimezone}${sign}${offset}:00`;
 }

@@ -56,9 +56,12 @@ export interface Spec extends TurboModule {
 		language?: string,
 		distributionId?: string,
 	): Promise<void>;
-	debug(): Promise<void>;
-	debugTargeting(): Promise<void>;
+	debug(): Promise<string>;
+	debugTargeting(): Promise<string>;
+	sessionReplayStart(): Promise<void>;
+	sessionReplayStop(): Promise<void>;
 	resetIdentity(): Promise<void>;
+	getIdentity(): Promise<{ [key: string]: unknown } | null>;
 	closeSdk(): Promise<void>;
 	closeSurvey(surveyId?: string): Promise<void>;
 	closeMessage(messageId?: string): Promise<void>;
