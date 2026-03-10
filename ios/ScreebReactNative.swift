@@ -26,7 +26,7 @@ class ScreebReactNative: RCTEventEmitter {
       initOptions initOptions_: [String: Any]?,
       language language_: String?
     ) {
-    Screeb.setSecondarySDK(name: "react-native", version: "3.1.0")
+    Screeb.setSecondarySDK(name: "react-native", version: "3.1.1")
     var mapHooks: [String: Any]? = nil
     if (hooks_ != nil) {
       mapHooks = [:]
