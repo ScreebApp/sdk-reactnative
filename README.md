@@ -1,3 +1,7 @@
+> ⚠️ **This repository has been archived.** Development has moved to [ScreebApp/sdk](https://github.com/ScreebApp/sdk/tree/master/packages/sdk-reactnative).
+
+---
+
 <p align="center">
   <a href="https://www.npmjs.com/package/@screeb/react-native"><img alt="npm screeb/react-native" src="https://img.shields.io/npm/v/@screeb/react-native"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
